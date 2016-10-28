@@ -15,6 +15,7 @@
 #import "DWHUDCanvas.h"
 #import "DWHUDLayout.h"
 #import "UIBezierPath+DWPathUtils.h"
+#import "DWHUDCanvas.h"
 @interface ViewController ()
 
 @property (nonatomic ,strong) DWHUDTickIndicator * hud;
@@ -106,25 +107,30 @@
 //    UILabel * label = maker.component;
 //    [self.view addSubview:label];
 //    label.center = self.view.center;
-    CGFloat width = 200;
-    CGFloat length = width / 4;
-    UIBezierPath * path = [UIBezierPath bezierPathWithPathMaker:^(DWPathMaker *maker) {
-//        maker.MoveTo(length * 2.5,length * 1.5).AddArcWithPoint(length * 2.5,length * 1.5,length * 3.5,length * 1.5,length * 0.5,YES).AddLineTo( length * 3.25,length * 4.25).AddArcWithPoint(length * 3.25,length * 4.25,length * 2.75,length * 4.25,length * 0.25,YES).ClosePath();
-        maker.MoveTo(length * 1,length * 2).AddArcWithPoint(length * 1,length * 2,length * 2,length * 3,length,NO,NO);
-    }];
-    
-    CAShapeLayer * layer = [CAShapeLayer layer];
-    layer.backgroundColor = [UIColor yellowColor].CGColor;
-    layer.fillColor = [UIColor redColor].CGColor;
-    layer.bounds = CGRectMake(0, 0, width, width);
-    [self.view.layer addSublayer:layer];
-    layer.position = self.view.center;
-    layer.path = path.CGPath;
+//    CGFloat width = 200;
+//    CGFloat length = width / 4;
+//    UIBezierPath * path = [UIBezierPath bezierPathWithPathMaker:^(DWPathMaker *maker) {
+////        maker.MoveTo(length * 2.5,length * 1.5).AddArcWithPoint(length * 2.5,length * 1.5,length * 3.5,length * 1.5,length * 0.5,YES).AddLineTo( length * 3.25,length * 4.25).AddArcWithPoint(length * 3.25,length * 4.25,length * 2.75,length * 4.25,length * 0.25,YES).ClosePath();
+//        maker.MoveTo(length * 1,length * 2).AddArcWithPoint(length * 1,length * 2,length * 2,length * 3,length,NO,NO);
+//    }];
+//    
+//    CAShapeLayer * layer = [CAShapeLayer layer];
+//    layer.backgroundColor = [UIColor yellowColor].CGColor;
+//    layer.fillColor = [UIColor redColor].CGColor;
+//    layer.bounds = CGRectMake(0, 0, width, width);
+//    [self.view.layer addSublayer:layer];
+//    layer.position = self.view.center;
+//    layer.path = path.CGPath;
 //    DWHUDComponentMaker * maker = [DWHUDComponentMaker createExclamationComponentWithFrame:CGRectMake(0, 0, 200, 200)];
 //    CALayer * layer = maker.component;
 //    layer.position = self.view.center;
 //    [self.view.layer addSublayer:layer];
 //    [maker.animation start];
+    DWHUDCanvas * cav = [DWHUDCanvas new];
+    [self.view addSubview:cav];
+    cav.maskBackView = YES;
+//    [cav removeFromSuperview];
+    
 }
 
 -(void)btnAction

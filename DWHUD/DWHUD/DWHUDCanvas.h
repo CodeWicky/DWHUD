@@ -10,6 +10,7 @@
 #import "DWHUDLayout.h"
 @interface DWHUDCanvas : UIView
 @property (nonatomic ,strong) DWHUDLayout * layout;
+@property (nonatomic ,assign) BOOL maskBackView;
 -(instancetype)initWithFrame:(CGRect)frame layout:(DWHUDLayout *)layout;
 -(void)show;
 -(void)hide;

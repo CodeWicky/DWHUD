@@ -8,6 +8,12 @@
 
 #import "DWHUDCanvas.h"
 
+@interface DWHUDCanvas ()
+
+@property (nonatomic ,strong) UIView * backView;
+
+@end
+
 @implementation DWHUDCanvas
 
 -(instancetype)initWithFrame:(CGRect)frame layout:(DWHUDLayout *)layout
@@ -32,6 +38,43 @@
     }
 }
 
+-(void)willMoveToSuperview:(UIView *)newSuperview
+{
+    if (self.maskBackView) {
+        if (!self.backView) {
+            self.backView = [[UIView alloc] initWithFrame:newSuperview.bounds];
+            self.backView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+        }
+        [newSuperview addSubview:self.backView];
+    }
+}
+
+-(void)removeFromSuperview
+{
+    if (self.maskBackView) {
+        if (self.backView) {
+            [self.backView removeFromSuperview];
+        }
+    }
+    [super removeFromSuperview];
+}
+
+-(void)setMaskBackView:(BOOL)maskBackView
+{
+    _maskBackView = maskBackView;
+    if (maskBackView) {
+        if (self.superview) {
+            if (!self.backView) {
+                self.backView = [[UIView alloc] initWithFrame:self.superview.bounds];
+                self.backView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+            }
+            if (!self.backView.superview) {
+                [self.superview insertSubview:self.backView belowSubview:self];
+            }
+        }
+    }
+}
+
 -(void)show
 {
     [self.layout willShowTheHUD];
@@ -51,4 +94,5 @@
     _layout = layout;
     layout.canvas = self;
 }
+
 @end
