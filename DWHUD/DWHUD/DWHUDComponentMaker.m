@@ -9,6 +9,7 @@
 #import "DWHUDComponentMaker.h"
 #import "UIBezierPath+DWPathUtils.h"
 #import "UIImageView+DWGifTool.h"
+#import "DWAnimationHeader.h"
 @implementation DWHUDComponentMaker
 
 +(instancetype)createRingComponentWithRadius:(CGFloat)radius
@@ -45,12 +46,9 @@
 
 -(DWAnimation *)createRingDefaultAnimationWithLayer:(CALayer *)layer
 {
-    DWAnimation * rotateA = [layer dw_CreateAnimationWithKey:@"rotateA" animationCreater:^(DWAnimationMaker *maker) {
+    return [layer dw_CreateAnimationWithKey:@"ringAction" animationCreater:^(DWAnimationMaker *maker) {
         maker.rotateFrom(-90).rotateTo(270).duration(2).install();
     }];
-    rotateA.repeatCount = MAXFLOAT;
-    rotateA.animationKey = @"ringAction";
-    return rotateA;
 }
 
 +(instancetype)createTickComponentWithFrame:(CGRect)frame
@@ -88,7 +86,7 @@
 
 -(DWAnimation *)createTickAnimationWithLayer:(CAShapeLayer *)layer
 {
-    return [[DWAnimation alloc] initAnimationWithLayer:layer animationKey:@"tickAnimation" keyPath:@"strokeEnd" beginTime:0 fromValue:@0 toValue:@1 duration:1 timingFunctionName:kCAMediaTimingFunctionEaseInEaseOut];
+    return [layer dw_CreateAnimationWithKeyPath:@"strokeEnd" animationKey:@"tickAnimation" beginTime:0 duration:1 fromValue:@0 toValue:@1 timingFunctionName:kCAMediaTimingFunctionEaseInEaseOut];
 }
 
 +(instancetype)createCrossComponentWithFrame:(CGRect)frame
@@ -192,8 +190,7 @@
 
 -(DWAnimation *)createExclamationAnimationWithLayer:(CALayer *)layer
 {
-    DWAnimation * animation1 = [layer.mask dw_CreateAnimationWithAnimationKey:@"maskAnimation" keyPath:@"strokeEnd" beginTime:0 fromValue:@0 toValue:@1 duration:1 timingFunctionName:kCAMediaTimingFunctionDefault];
-    return animation1;
+    return [layer.mask dw_CreateAnimationWithKeyPath:@"strokeEnd" animationKey:@"maskAnimation" beginTime:0 duration:1 fromValue:@0 toValue:@1 timingFunctionName:kCAMediaTimingFunctionDefault];
 }
 
 +(instancetype)createLabelComponentWithString:(NSString *)string font:(UIFont *)font numberOfLines:(NSInteger)numberOfLines autoresize:(BOOL)autoresize limitSize:(CGSize)limitSize

@@ -7,8 +7,8 @@
 //
 
 #import "DWAnimation.h"
-
-@interface DWAnimation ()
+#import "DWAnimationMaker.h"
+@interface DWAnimation ()<CAAnimationDelegate>
 
 @property (nonatomic ,assign) BOOL notFirstTime;
 
@@ -44,7 +44,7 @@
 }
 
 ///以数组形式创建动画
--(instancetype)initAnimationWithLayer:(CALayer *)layer beginTime:(CGFloat)beginTime duration:(CGFloat)duration animationKey:(NSString *)animationKey animations:(__kindof NSArray<CAAnimation *> *)animations
+-(instancetype)initAnimationWithLayer:(CALayer *)layer animationKey:(NSString *)animationKey beginTime:(CGFloat)beginTime duration:(CGFloat)duration animations:(__kindof NSArray<CAAnimation *> *)animations
 {
     self = [super init];
     if (self) {
@@ -53,6 +53,17 @@
         self.duration = duration + beginTime;
         self.animationKey = animationKey;
         self.status = DWAnimationStatusReadyToShow;
+        NSArray * arr = [animations sortedArrayUsingComparator:^NSComparisonResult(CAAnimation * ani1, CAAnimation * ani2) {
+            if (ani1.beginTime > ani2.beginTime) {
+                return NSOrderedDescending;
+            }else if (ani1.beginTime < ani2.beginTime)
+            {
+                return NSOrderedAscending;
+            }else
+            {
+                return NSOrderedSame;
+            }
+        }];
         for (CAAnimation * animation in animations) {
             animation.beginTime += beginTime;
         }
@@ -61,7 +72,7 @@
         group.removedOnCompletion = NO;
         group.fillMode = kCAFillModeForwards;
         group.duration = duration + beginTime;
-        group.animations = animations;
+        group.animations = arr;
         group.repeatCount = 1;
         self.animation = group;
     }
@@ -262,7 +273,7 @@
         if (transtion) {
             animation.calculationMode = kCAAnimationCubic;
         }
-        return [[DWAnimation alloc] initAnimationWithLayer:layer beginTime:0  duration:duration + beginTime animationKey:animationKey animations:@[animation]];
+        return [[DWAnimation alloc] initAnimationWithLayer:layer animationKey:animationKey beginTime:0  duration:duration + beginTime animations:@[animation]];
     }
     else
     {
@@ -285,7 +296,7 @@
     if (autoRotate) {
         animation.rotationMode = kCAAnimationRotateAuto;
     }
-    return [[DWAnimation alloc] initAnimationWithLayer:layer beginTime:0  duration:(beginTime + duration) animationKey:animationKey animations:@[animation]];
+    return [[DWAnimation alloc] initAnimationWithLayer:layer animationKey:animationKey beginTime:0  duration:(beginTime + duration) animations:@[animation]];
 }
 
 ///创建弧线动画
@@ -296,7 +307,7 @@
 }
 
 ///创建震荡动画
--(instancetype)initAnimationWitnLayer:(CALayer *)layer animationKey:(NSString *)animationKey springingType:(DWAnimationSpringType)springingType beginTime:(CGFloat)beginTime fromValue:(id)fromValue toValue:(id)toValue mass:(CGFloat)mass stiffness:(CGFloat)stiffness damping:(CGFloat)damping initialVelocity:(CGFloat)initialVelocity
+-(instancetype)initAnimationWithLayer:(CALayer *)layer animationKey:(NSString *)animationKey springingType:(DWAnimationSpringType)springingType beginTime:(CGFloat)beginTime fromValue:(id)fromValue toValue:(id)toValue mass:(CGFloat)mass stiffness:(CGFloat)stiffness damping:(CGFloat)damping initialVelocity:(CGFloat)initialVelocity
 {
     if (!SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(9.0)) {
         return nil;
@@ -517,11 +528,11 @@
         UIImage * image = (UIImage *)toValue;
         animation.toValue = (id)image.CGImage;
     }
-    return [[DWAnimation alloc] initAnimationWithLayer:layer beginTime:0  duration:(beginTime + animation.duration) animationKey:animationKey animations:@[animation]];
+    return [[DWAnimation alloc] initAnimationWithLayer:layer animationKey:animationKey beginTime:0  duration:(beginTime + animation.duration) animations:@[animation]];
 }
 
 ///创建特殊属性动画
--(instancetype)initAnimationWithLayer:(CALayer *)layer animationKey:(NSString *)animationKey keyPath:(NSString *)keyPath beginTime:(CGFloat)beginTime fromValue:(id)fromValue toValue:(id)toValue duration:(CGFloat)duration timingFunctionName:(NSString *)timingFunctionName
+-(instancetype)initAnimationWithLayer:(CALayer *)layer keyPath:(NSString *)keyPath animationKey:(NSString *)animationKey beginTime:(CGFloat)beginTime duration:(CGFloat)duration fromValue:(id)fromValue toValue:(id)toValue timingFunctionName:(NSString *)timingFunctionName
 {
     CABasicAnimation * animation = [CABasicAnimation animationWithKeyPath:keyPath];
     animation.removedOnCompletion = NO;
@@ -533,7 +544,7 @@
     }
     animation.toValue = toValue;
     animation.timingFunction = [CAMediaTimingFunction functionWithName:timingFunctionName];
-    return [[DWAnimation alloc] initAnimationWithLayer:layer beginTime:0 duration:(beginTime + duration) animationKey:animationKey animations:@[animation]];
+    return [[DWAnimation alloc] initAnimationWithLayer:layer animationKey:animationKey beginTime:0 duration:(beginTime + duration) animations:@[animation]];
 }
 
 #pragma mark ------动画控制方法------
@@ -586,24 +597,26 @@
 #pragma mark ------动画编辑方法------
 
 ///拼接两个动画
--(DWAnimation *)addAnimation:(DWAnimation *)animation
+-(DWAnimation *)addAnimation:(DWAnimation *)animation animationKey:(NSString *)animationKey
 {
     CALayer * layer = self.layer;
     if (![layer isEqual:animation.layer]) {
         return self;
     }
     CGFloat beginTime = self.duration + self.beginTime;
-    NSString * key = [NSString stringWithFormat:@"(%@_ADD_%@)",self.animationKey,animation.animationKey];
+    if (animationKey == nil || animationKey.length == 0) {
+        animationKey = [NSString stringWithFormat:@"(%@_ADD_%@)",self.animationKey,animation.animationKey];
+    }
     CGFloat duration = beginTime + animation.duration;
     animation.beginTime = beginTime;
     NSMutableArray * arr = [NSMutableArray array];
     [arr addObject:self.animation];
     [arr addObject:animation.animation];
-    return [[DWAnimation alloc] initAnimationWithLayer:layer beginTime:0  duration:duration animationKey:key animations:arr];
+    return [[DWAnimation alloc] initAnimationWithLayer:layer animationKey:animationKey beginTime:0  duration:duration animations:arr];
 }
 
 ///按顺序拼接数组中的所有动画
-+(DWAnimation *)createAnimationWithAnimations:(__kindof NSArray<DWAnimation *> *)animations
++(DWAnimation *)createAnimationWithAnimations:(__kindof NSArray<DWAnimation *> *)animations animationKey:(NSString *)animationKey
 {
     int count = (int)animations.count;
     if (!count) {
@@ -613,20 +626,37 @@
         return animations.firstObject;
     }
     NSMutableArray * mArr = animations.mutableCopy;
-    DWAnimation * animation = [mArr[0] addAnimation:mArr[1]];
+    [mArr sortUsingComparator:^NSComparisonResult(DWAnimation * ani1, DWAnimation * ani2) {
+        CGFloat begin1 = ani1.animation.beginTime;
+        CGFloat begin2 = ani2.animation.beginTime;
+        if (begin1 > begin2) {
+            return NSOrderedDescending;
+        }else if (begin1 < begin2)
+        {
+            return NSOrderedAscending;
+        }else
+        {
+            return NSOrderedSame;
+        }
+    }];
+    DWAnimation * animation = [mArr[0] addAnimation:mArr[1] animationKey:nil];
     [mArr removeObjectAtIndex:0];
     [mArr removeObjectAtIndex:0];
     count -= 2;
     while (count) {
-        animation = [animation addAnimation:mArr[0]];
+        animation = [animation addAnimation:mArr[0] animationKey:nil];
         [mArr removeObjectAtIndex:0];
         count --;
+    }
+    if (animationKey != nil && animationKey.length != 0) {
+        animation.animationKey = animationKey;
     }
     return animation;
 }
 
 ///并发组合两个动画
--(DWAnimation *)combineWithAnimation:(DWAnimation *)animaiton{
+-(DWAnimation *)combineWithAnimation:(DWAnimation *)animaiton animationKey:(NSString *)animationKey
+{
     if (![self.layer isEqual:animaiton.layer]) {
         return self;
     }
@@ -634,12 +664,14 @@
     [arr addObject:self.animation];
     [arr addObject:animaiton.animation];
     CGFloat duration = MAX(self.duration, animaiton.duration);
-    NSString * key = [NSString stringWithFormat:@"(%@_COMBINE_%@)",self.animationKey,animaiton.animationKey];
-    return [[DWAnimation alloc] initAnimationWithLayer:self.layer beginTime:0 duration:duration animationKey:key animations:arr];
+    if (animationKey == nil || animationKey.length == 0) {
+        animationKey = [NSString stringWithFormat:@"(%@_COMBINE_%@)",self.animationKey,animaiton.animationKey];
+    }
+    return [[DWAnimation alloc] initAnimationWithLayer:self.layer animationKey:animationKey beginTime:0 duration:duration animations:arr];
 }
 
 ///并发组合数组中的动画
-+(DWAnimation *)combineAnimationsInArray:(__kindof NSArray<DWAnimation *> *)animations
++(DWAnimation *)combineAnimationsInArray:(__kindof NSArray<DWAnimation *> *)animations animationKey:(NSString *)animaitonKey
 {
     int count = (int)animations.count;
     if (!count) {
@@ -649,24 +681,28 @@
         return animations.firstObject;
     }
     NSMutableArray * mArr = animations.mutableCopy;
-    DWAnimation * animation = [mArr[0] combineWithAnimation:mArr[1]];
+    DWAnimation * animation = [mArr[0] combineWithAnimation:mArr[1] animationKey:nil];
     [mArr removeObjectAtIndex:0];
     [mArr removeObjectAtIndex:0];
     count -= 2;
     while (count) {
-        animation = [animation combineWithAnimation:mArr[0]];
+        animation = [animation combineWithAnimation:mArr[0] animationKey:nil];
         [mArr removeObjectAtIndex:0];
         count --;
+    }
+    if (animaitonKey != nil && animaitonKey.length != 0) {
+        animation.animationKey = animaitonKey;
     }
     return animation;
 }
 
 ///创建恢复动画
-+(DWAnimation *)createResetAnimationWithLayer:(CALayer *)layer
-                                   beginTime:(CGFloat)beginTime
-                                    duration:(CGFloat)duration
++(DWAnimation *)createResetAnimationWithLayer:(CALayer *)layer animationKey:(NSString *)animationKey beginTime:(CGFloat)beginTime duration:(CGFloat)duration
 {
-    return [[DWAnimation alloc] initAnimationWithLayer:layer animationKey:@"resetAnimation" animationCreater:^(DWAnimationMaker *maker) {
+    if (animationKey == nil || animationKey.length == 0) {
+        animationKey = @"resetAnimation";
+    }
+    return [[DWAnimation alloc] initAnimationWithLayer:layer animationKey:animationKey animationCreater:^(DWAnimationMaker *maker) {
         maker.reset.beginTime(beginTime).duration(duration).install();
     }];
 }
@@ -712,6 +748,9 @@
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
     self.status = DWAnimationStatusFinished;
+    if (self.completion) {
+        self.completion(self);
+    }
     [[NSNotificationCenter defaultCenter] postNotificationName:DWAnimationPlayFinishNotification object:@{@"animation":self,@"finished":@(flag)}];
 }
 
@@ -719,7 +758,7 @@
 
 -(void)setBeginTime:(CGFloat)beginTime
 {
-    _beginTime = beginTime;
+    [super setBeginTime:beginTime];
     self.duration = self.animation.duration * self.repeatCount + beginTime;
     self.animation.beginTime += beginTime;
 }
@@ -729,5 +768,11 @@
     _repeatCount = repeatCount;
     self.animation.repeatCount = repeatCount;
     self.duration = self.animation.duration * repeatCount + self.beginTime;
+}
+
+-(void)setTimingFunctionName:(NSString *)timingFunctionName
+{
+    _timingFunctionName = timingFunctionName;
+    self.animation.timingFunction = [CAMediaTimingFunction functionWithName:timingFunctionName];
 }
 @end

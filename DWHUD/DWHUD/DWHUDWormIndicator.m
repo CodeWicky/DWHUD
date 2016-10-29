@@ -7,7 +7,7 @@
 //
 
 #import "DWHUDWormIndicator.h"
-#import "DWAnimation.h"
+#import "DWAnimationHeader.h"
 @interface DWHUDWormIndicator ()
 
 @property (nonatomic ,strong) NSMutableArray * layerArr;
@@ -95,24 +95,24 @@
         return nil;
     }
     CGFloat time = duration / 4;
-    DWAnimation * animation1 = [layer dw_CreateAnimationWithAnimationKey:@"animation1" keyPath:@"strokeEnd" beginTime:0 fromValue:nil toValue:@(0.5 - offset) duration:time timingFunctionName:kCAMediaTimingFunctionEaseInEaseOut];
-    DWAnimation * animation2 = [layer dw_CreateAnimationWithAnimationKey:@"animation2" keyPath:@"strokeStart" beginTime:time fromValue:nil toValue:@0.5 duration:time timingFunctionName:kCAMediaTimingFunctionEaseInEaseOut];
-    DWAnimation * animation3 = [layer dw_CreateAnimationWithAnimationKey:@"animation3" keyPath:@"strokeEnd" beginTime:(time * 2) fromValue:nil toValue:@1 duration:time timingFunctionName:kCAMediaTimingFunctionEaseInEaseOut];
-    DWAnimation * animation4 = [layer dw_CreateAnimationWithAnimationKey:@"animation4" keyPath:@"strokeStart" beginTime:(time * 3) fromValue:nil toValue:@1 duration:time timingFunctionName:kCAMediaTimingFunctionEaseInEaseOut];
+    DWAnimation * animation1 = [layer dw_CreateAnimationWithKeyPath:@"strokeEnd" animationKey:@"animation1" beginTime:0 duration:time fromValue:nil toValue:@(0.5 - offset) timingFunctionName:kCAMediaTimingFunctionEaseInEaseOut];
+    DWAnimation * animation2 = [layer dw_CreateAnimationWithKeyPath:@"strokeStart" animationKey:@"animation2" beginTime:time duration:time fromValue:nil toValue:@0.5 timingFunctionName:kCAMediaTimingFunctionEaseInEaseOut];
+    DWAnimation * animation3 = [layer dw_CreateAnimationWithKeyPath:@"strokeEnd" animationKey:@"animation3" beginTime:(time * 2) duration:time fromValue:nil toValue:@1 timingFunctionName:kCAMediaTimingFunctionEaseInEaseOut];
+    DWAnimation * animation4 = [layer dw_CreateAnimationWithKeyPath:@"strokeStart" animationKey:@"animation4" beginTime:(time * 3) duration:time fromValue:nil toValue:@1 timingFunctionName:kCAMediaTimingFunctionEaseInEaseOut];
     CGFloat centerX = self.bounds.size.width / 2.0;
     CGFloat centerY = self.bounds.size.height / 2.0;
-    DWAnimation * animation5 = [layer dw_CreateAnimationWithAnimationKey:@"animation5" keyPath:@"position" beginTime:0 fromValue:[NSValue valueWithCGPoint:CGPointMake(centerX + 2 * radius, centerY)] toValue:[NSValue valueWithCGPoint:CGPointMake(centerX + radius, centerY)] duration:time timingFunctionName:kCAMediaTimingFunctionEaseInEaseOut];
-    DWAnimation * animation6 = [layer dw_CreateAnimationWithAnimationKey:@"animation6" keyPath:@"position" beginTime:time fromValue:nil toValue:[NSValue valueWithCGPoint:CGPointMake(centerX, centerY)] duration:time timingFunctionName:kCAMediaTimingFunctionEaseInEaseOut];
-    DWAnimation * animation7 = [layer dw_CreateAnimationWithAnimationKey:@"animation7" keyPath:@"position" beginTime:(time * 2) fromValue:nil toValue:[NSValue valueWithCGPoint:CGPointMake(centerX - radius, centerY)] duration:time timingFunctionName:kCAMediaTimingFunctionEaseInEaseOut];
-    DWAnimation * animation8 = [layer dw_CreateAnimationWithAnimationKey:@"animation8" keyPath:@"position" beginTime:(time * 3) fromValue:nil toValue:[NSValue valueWithCGPoint:CGPointMake(centerX - 2 * radius, centerY)] duration:time timingFunctionName:kCAMediaTimingFunctionEaseInEaseOut];
+    DWAnimation * animation5 = [layer dw_CreateAnimationWithKeyPath:@"position" animationKey:@"animation5" beginTime:0 duration:time fromValue:[NSValue valueWithCGPoint:CGPointMake(centerX + 2 * radius, centerY)] toValue:[NSValue valueWithCGPoint:CGPointMake(centerX + radius, centerY)] timingFunctionName:kCAMediaTimingFunctionEaseInEaseOut];
+    DWAnimation * animation6 = [layer dw_CreateAnimationWithKeyPath:@"position" animationKey:@"animation6" beginTime:time duration:time fromValue:nil toValue:[NSValue valueWithCGPoint:CGPointMake(centerX, centerY)] timingFunctionName:kCAMediaTimingFunctionEaseInEaseOut];
+    DWAnimation * animation7 = [layer dw_CreateAnimationWithKeyPath:@"position" animationKey:@"animation7" beginTime:(time * 2) duration:time fromValue:nil toValue:[NSValue valueWithCGPoint:CGPointMake(centerX - radius, centerY)] timingFunctionName:kCAMediaTimingFunctionEaseInEaseOut];
+    DWAnimation * animation8 = [layer dw_CreateAnimationWithKeyPath:@"position" animationKey:@"animation8" beginTime:(time * 3) duration:time fromValue:nil toValue:[NSValue valueWithCGPoint:CGPointMake(centerX - 2 * radius, centerY)] timingFunctionName:kCAMediaTimingFunctionEaseInEaseOut];
     NSMutableArray * arr = @[animation1,animation2,animation3,animation4,animation5,animation6,animation7,animation8].mutableCopy;
     if (offset) {
-        DWAnimation * animation21 = [layer dw_CreateAnimationWithAnimationKey:@"animation21" keyPath:@"strokeEnd" beginTime:time fromValue:nil toValue:@0.5 duration:time timingFunctionName:kCAMediaTimingFunctionEaseInEaseOut];
-        DWAnimation * animation31 = [layer dw_CreateAnimationWithAnimationKey:@"animation31" keyPath:@"strokeStart" beginTime:(time * 2) fromValue:nil toValue:@(0.5 + offset) duration:time timingFunctionName:kCAMediaTimingFunctionEaseInEaseOut];
+        DWAnimation * animation21 = [layer dw_CreateAnimationWithKeyPath:@"strokeEnd" animationKey:@"animation21" beginTime:time duration:time fromValue:nil toValue:@0.5 timingFunctionName:kCAMediaTimingFunctionEaseInEaseOut];
+        DWAnimation * animation31 = [layer dw_CreateAnimationWithKeyPath:@"strokeStart" animationKey:@"animation31" beginTime:(time * 2) duration:time fromValue:nil toValue:@(0.5 + offset) timingFunctionName:kCAMediaTimingFunctionEaseInEaseOut];
         [arr insertObject:animation21 atIndex:2];
         [arr insertObject:animation31 atIndex:4];
     }
-    DWAnimation * animations = [DWAnimation combineAnimationsInArray:arr];
+    DWAnimation * animations = [DWAnimation combineAnimationsInArray:arr animationKey:@"wormAnimation"];
     animations.repeatCount = MAXFLOAT;
     return animations;
 }

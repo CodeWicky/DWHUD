@@ -7,7 +7,7 @@
 //
 
 #import "DWHUDRingIndicator.h"
-#import "DWAnimation.h"
+#import "DWAnimationHeader.h"
 #import "DWHUDComponentMaker.h"
 @interface DWHUDRingIndicatorAction : NSObject
 +(DWAnimation *)createAnimationWithType:(DWHUDRingIndicatorActionType)type ringLayer:(CALayer *)layer;
@@ -20,21 +20,20 @@
     switch (type) {
         case DWHUDRingIndicatorActionTypeCycle:
         {
-            DWAnimation * endA = [layer dw_CreateAnimationWithAnimationKey:@"endA" keyPath:@"strokeEnd" beginTime:0 fromValue:@0 toValue:@1 duration:2 timingFunctionName:kCAMediaTimingFunctionLinear];
-            DWAnimation * startA = [layer dw_CreateAnimationWithAnimationKey:@"startA" keyPath:@"strokeStart" beginTime:2 fromValue:@0 toValue:@1 duration:2 timingFunctionName:kCAMediaTimingFunctionLinear];
-            DWAnimation * combineA = [endA combineWithAnimation:startA];
-            combineA.animationKey = @"ringAction";
+            DWAnimation * endA = [layer dw_CreateAnimationWithKeyPath:@"strokeEnd" animationKey:@"endA" beginTime:0 duration:2 fromValue:@0 toValue:@1 timingFunctionName:kCAMediaTimingFunctionLinear];
+            DWAnimation * startA = [layer dw_CreateAnimationWithKeyPath:@"strokeStart" animationKey:@"startA" beginTime:2 duration:2 fromValue:@0 toValue:@1 timingFunctionName:kCAMediaTimingFunctionLinear];
+            DWAnimation * combineA = [endA combineWithAnimation:startA animationKey:@"ringAction"];
             combineA.repeatCount = MAXFLOAT;
             return combineA;
             break;
         }
         case DWHUDRingIndicatorActionTypeRotateCycle:
         {
-            DWAnimation * endA = [layer dw_CreateAnimationWithAnimationKey:@"endA" keyPath:@"strokeEnd" beginTime:0 fromValue:@0.1 toValue:@0.6 duration:1.5 timingFunctionName:kCAMediaTimingFunctionLinear];
-            DWAnimation * startA = [layer dw_CreateAnimationWithAnimationKey:@"startA" keyPath:@"strokeStart" beginTime:1.5 fromValue:@0 toValue:@0.5 duration:1.5 timingFunctionName:kCAMediaTimingFunctionLinear];
-            DWAnimation * endA2 = [layer dw_CreateAnimationWithAnimationKey:@"endA2" keyPath:@"strokeEnd" beginTime:3 fromValue:@0.6 toValue:@0.1 duration:0.5 timingFunctionName:kCAMediaTimingFunctionLinear];
-            DWAnimation * startA2 = [layer dw_CreateAnimationWithAnimationKey:@"startA2" keyPath:@"strokeStart" beginTime:3 fromValue:@0.5 toValue:@0 duration:0.5 timingFunctionName:kCAMediaTimingFunctionLinear];
-            DWAnimation * combineA = [DWAnimation combineAnimationsInArray:@[endA,startA,endA2,startA2]];
+            DWAnimation * endA = [layer dw_CreateAnimationWithKeyPath:@"strokeEnd" animationKey:@"endA" beginTime:0 duration:1.5 fromValue:@0.1 toValue:@0.6 timingFunctionName:kCAMediaTimingFunctionLinear];
+            DWAnimation * startA = [layer dw_CreateAnimationWithKeyPath:@"strokeStart" animationKey:@"startA" beginTime:1.5 duration:1.5 fromValue:@0 toValue:@0.5 timingFunctionName:kCAMediaTimingFunctionLinear];
+            DWAnimation * endA2 = [layer dw_CreateAnimationWithKeyPath:@"strokeEnd" animationKey:@"endA2" beginTime:3 duration:0.5 fromValue:@0.6 toValue:@0.1 timingFunctionName:kCAMediaTimingFunctionLinear];
+            DWAnimation * startA2 = [layer dw_CreateAnimationWithKeyPath:@"strokeStart" animationKey:@"startA2" beginTime:3 duration:0.5 fromValue:@0.5 toValue:@0 timingFunctionName:kCAMediaTimingFunctionLinear];
+            DWAnimation * combineA = [DWAnimation combineAnimationsInArray:@[endA,startA,endA2,startA2] animationKey:nil];
             combineA.repeatCount = 3;
             DWAnimation * rotateA = [layer dw_CreateAnimationWithKey:@"rotateA" animationCreater:^(DWAnimationMaker *maker) {
                 maker.rotateFrom(-90).rotateTo(270).duration(3).install();
@@ -44,19 +43,17 @@
                 maker.rotateFrom(30).rotateTo(390).beginTime(7).duration(3).install();
                 maker.rotateFrom(30).rotateTo(270).beginTime(10).duration(0.5).install();
             }];
-            DWAnimation * combineFA = [combineA combineWithAnimation:rotateA];
-            combineFA.animationKey = @"ringAction";
+            DWAnimation * combineFA = [combineA combineWithAnimation:rotateA animationKey:@"ringAction"];
             combineFA.repeatCount = MAXFLOAT;
             return combineFA;
             break;
         }
         default:
         {
-            DWAnimation * rotateA = [layer dw_CreateAnimationWithKey:@"rotateA" animationCreater:^(DWAnimationMaker *maker) {
+            DWAnimation * rotateA = [layer dw_CreateAnimationWithKey:@"ringAction" animationCreater:^(DWAnimationMaker *maker) {
                 maker.rotateFrom(-90).rotateTo(270).duration(2).install();
             }];
             rotateA.repeatCount = MAXFLOAT;
-            rotateA.animationKey = @"ringAction";
             return rotateA;
             break;
         }

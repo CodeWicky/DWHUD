@@ -10,6 +10,7 @@
  DWAnimation
  
  简介：一句话生成CALayer动画，支持动画间任意拼接、组合
+ （仅限针对同一CALayer进行操作，若layer不同，请使用DWAnimationGroup）
  
  version 1.0.0
  提供两种生成动画的构造方法
@@ -86,27 +87,23 @@
  version 1.1.0
  更改所有api中参数将UIView对象改为更加广泛适合的CALayer对象
  添加特殊属性动画api，支持为CALayer及其子类中所有支持动画的属性生成动画。
+ 
+ version 1.1.1
+ 由于动画组animationGroup中需按beginTime顺序传入animations数组，故修改所有相关代码，其中包括以数组形式生成动画、以block形式生成动画、组合一组动画。
+ 添加动画节奏设置选项，支持修改动画节奏。
+ 
+ version 1.1.2
+ 规范化方法名
+ 为组合动画、拼接动画、恢复动画添加animationKey接口
+ 
+ version 1.1.3
+ 改变继承关系，继承自抽象类DWAnimationAbstraction
  */
 
-#import <UIKit/UIKit.h>
-#import "DWAnimationHeader.h"
-#import "DWAnimationMaker.h"
-#import "DWAnimationManager.h"
-#import "UIView+DWAnimation.h"
-#import "CALayer+DWAnimation.h"
+#import "DWAnimationAbstraction.h"
+#import "DWAnimationConstant.h"
 @class DWAnimationMaker;
-@interface DWAnimation : NSObject
-
-///动画时长
-@property (nonatomic ,assign) CGFloat duration;
-
-///动画延时时长
-/*
- 注：所有构造方法，包括构造方法中含有参数beginTime都不影响本属性。
- 本属性仅作为编辑动画时要延时某个动画时调整属性，其他情况下请勿修改本属性。
- 默认值为0。手动修改本属性后，将会使本动画再原有基础上再延时一段时间执行。
- */
-@property (nonatomic ,assign) CGFloat beginTime;
+@interface DWAnimation : DWAnimationAbstraction
 
 ///动画组对象
 @property (nonatomic ,strong) CAAnimationGroup * animation;
@@ -117,16 +114,22 @@
 ///展示动画的layer
 @property (nonatomic ,strong) CALayer * layer;
 
+///动画节奏类型名
+@property (nonatomic ,copy) NSString * timingFunctionName;
+
 ///动画状态
 @property (nonatomic ,assign) DWAnimationStatus status;
 
 ///动画播放次数
-/*
- repeatCount        数值设为负数，为无限播放
+/**
+ repeatCount        数值设为MAXFLOAT，为无限播放
  repeatCount        数值设为0，不播放
  repeatCount        数值设为正数，播放次数
  */
 @property (nonatomic ,assign) CGFloat repeatCount;
+
+///动画完成回调
+@property (nonatomic ,copy) void (^completion) (DWAnimation *);
 
 #pragma mark ---动画构造方法---
 
@@ -148,9 +151,9 @@
  animations         动画数组，由CAAnimation及其派生类组成
  */
 -(instancetype)initAnimationWithLayer:(CALayer *)layer
+                         animationKey:(NSString *)animationKey
                             beginTime:(CGFloat)beginTime
                              duration:(CGFloat)duration
-                         animationKey:(NSString *)animationKey
                            animations:(__kindof NSArray<CAAnimation *> *)animations;
 
 ///以多个状态及时间间隔创建连续动画
@@ -235,7 +238,7 @@
  
  注：fromValue与toValue，均为UIKit中对象类型，如NSValue/NSNumber/UIColor/UIBezierPath/UIImage。
  */
--(instancetype)initAnimationWitnLayer:(CALayer *)layer
+-(instancetype)initAnimationWithLayer:(CALayer *)layer
                          animationKey:(NSString *)animationKey
                         springingType:(DWAnimationSpringType)springingType
                             beginTime:(CGFloat)beginTime
@@ -265,63 +268,64 @@
  2.本方法创建的非CALayer属性动画不可用恢复动画自动恢复，请自行恢复
  */
 -(instancetype)initAnimationWithLayer:(CALayer *)layer
-                         animationKey:(NSString *)animationKey
                               keyPath:(NSString *)keyPath
+                         animationKey:(NSString *)animationKey
                             beginTime:(CGFloat)beginTime
+                             duration:(CGFloat)duration
                             fromValue:(id)fromValue
                               toValue:(id)toValue
-                             duration:(CGFloat)duration
                    timingFunctionName:(NSString *)timingFunctionName;
-#pragma mark ---动画控制方法---
-
-///开始播放动画
--(void)start;
-
-///暂停动画
--(void)suspend;
-
-///恢复动画
--(void)resume;
-
-///移除动画
-/**
- 若要移除，请确保初始化时animationKey正确
- 移除仅移除调用移除方法的动画实例，将返回动画的上一状态
- */
--(void)remove;
 
 #pragma mark ---动画编辑方法---
 
 ///拼接动画，在当前动画后拼接动画
 /**
+ animation      将要组合的DWAnimation对象
+ animaitonKey   组合后的动画的Key，可为nil或空，若为nil则以默认规则生成Key
+ 
  注：拼接动画会改变调用对象及添加对象的beginTime，且具有累计效应。
  故参与添加动画后，仅返回的动画实例具有正确动画效果，调用对象和添加均不能正确展示。
  */
--(DWAnimation *)addAnimation:(DWAnimation *)animation;
+-(DWAnimation *)addAnimation:(DWAnimation *)animation
+                animationKey:(NSString *)animationKey;
 
 ///按顺序拼接数组中的所有动画
 /**
- 注：本方法调用-addAnimation:,故仅返回值具有正确展示效果
+ animations     DWAniamtion对象组成的数组
+ animaitonKey   组合后的动画的Key，可为nil或空，若为nil则以默认规则生成Key
+ 
+ 注：本方法调用-addAnimation:animationKey:,故仅返回值具有正确展示效果
  */
-+(DWAnimation *)createAnimationWithAnimations:(__kindof NSArray<DWAnimation *> *)animations;
++(DWAnimation *)createAnimationWithAnimations:(__kindof NSArray<DWAnimation *> *)animations
+                                 animationKey:(NSString *)animationKey;
 
 ///并发组合两个动画
 /**
+ animation      将要组合的DWAnimation对象
+ animaitonKey   组合后的动画的Key，可为nil或空，若为nil则以默认规则生成Key
+ 
  注：组合后两动画并发执行
  若两动画中有相同动画属性且执行时间相同，则后者动作覆盖前者动作
  组合的动画的view应该为同一对象，否则返回自身
  若要实现不同view的动画并发执行，请调用DWAnimationManager中相关api
  */
--(DWAnimation *)combineWithAnimation:(DWAnimation *)animaiton;
+-(DWAnimation *)combineWithAnimation:(DWAnimation *)animaiton
+                        animationKey:(NSString *)animationKey;
 
 ///并发组合数组中的动画
-+(DWAnimation *)combineAnimationsInArray:(__kindof NSArray<DWAnimation *> *)animations;
+/**
+ animations     DWAniamtion对象组成的数组
+ animaitonKey   组合后的动画的Key，可为nil或空，若为nil则以默认规则生成Key
+ */
++(DWAnimation *)combineAnimationsInArray:(__kindof NSArray<DWAnimation *> *)animations
+                            animationKey:(NSString *)animaitonKey;
 
 ///创建恢复原状的动画
 /**
  注：特殊属性动画不在恢复动画范围内，请自行恢复。
  */
 +(DWAnimation *)createResetAnimationWithLayer:(CALayer *)layer
+                                 animationKey:(NSString *)animationKey
                                     beginTime:(CGFloat)beginTime
                                      duration:(CGFloat)duration;
 

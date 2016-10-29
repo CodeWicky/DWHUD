@@ -13,8 +13,8 @@
  通过快速生成部分组件后布置在DWHUDCanvas实现自定义HUD
  */
 
-#import <Foundation/Foundation.h>
-#import "DWAnimation.h"
+#import <UIKit/UIKit.h>
+@class DWAnimation;
 @interface DWHUDComponentMaker : NSObject
 
 @property (nonatomic ,strong) DWAnimation * animation;

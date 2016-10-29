@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import "DWHUDRingIndicator.h"
-#import "DWAnimation.h"
 #import "DWHUDWormIndicator.h"
 #import "DWHUDTickIndicator.h"
 #import "DWHUDComponentMaker.h"
@@ -16,6 +15,7 @@
 #import "DWHUDLayout.h"
 #import "UIBezierPath+DWPathUtils.h"
 #import "DWHUDCanvas.h"
+#import "DWAnimationHeader.h"
 @interface ViewController ()
 
 @property (nonatomic ,strong) DWHUDTickIndicator * hud;
@@ -126,20 +126,42 @@
 //    layer.position = self.view.center;
 //    [self.view.layer addSublayer:layer];
 //    [maker.animation start];
+    UIButton * btn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    [btn setFrame:CGRectMake(0, 0, 100, 30)];
+    btn.center = self.view.center;
+    [self.view addSubview:btn];
+    [btn setBackgroundColor:[UIColor greenColor]];
+    [btn addTarget:self action:@selector(btnAction) forControlEvents:(UIControlEventTouchUpInside)];
     DWHUDCanvas * cav = [DWHUDCanvas new];
+    cav.layout = [DWHUDLayout new];
+    cav.frame = CGRectMake(0, 0, 100, 100);
     [self.view addSubview:cav];
+    cav.backgroundColor = [UIColor yellowColor];
+    cav.interceptOutsideUserInteraction = YES;
     cav.maskBackView = YES;
-//    [cav removeFromSuperview];
+    cav.maskBackViewColor = [UIColor redColor];
+    cav.hideOnTouchOutside = YES;
+    cav.removeOnHide = YES;
+    cav.showAnimation = [cav dw_CreateAnimationWithKey:@"showA" animationCreater:^(DWAnimationMaker *maker) {
+        maker.rotateTo(360).duration(4).install();
+    }];
+    cav.hideAnimation = [cav dw_CreateAnimationWithKey:@"hideA" animationCreater:^(DWAnimationMaker *maker) {
+        maker.moveTo(CGPointMake(100, 100)).duration(2).install();
+    }];
+    [cav show];
+//    [cav hideAnimation];
     
 }
+
+
 
 -(void)btnAction
 {
 ////    [self.hud updateRingStartLoc:0.5 endLoc:1 animated:YES];
 //    self.hud.actionType = DWHUDRingIndicatorActionTypeCycle;
 ////    self.view.bounds = CGRectMake(0, 0, 375, 700);
-    [self.hud startAnimation];
-    
+//    [self.hud startAnimation];
+    NSLog(@"click");
 //    NSMutableString * string = self.arr.firstObject;
 //    [self.arr removeObject:string];
 //    NSLog(@"---arr:%@",self.arr);
