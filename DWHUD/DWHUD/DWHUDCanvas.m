@@ -126,6 +126,12 @@
 {
     ///展示
     self.hidden = NO;
+    
+    ///展示回调
+    if (self.didShowBlock) {
+        WEAKSELF;
+        self.didShowBlock(weakSelf);
+    }
 }
 
 -(void)hide
@@ -148,6 +154,12 @@
     }
     ///回调layout布局
     [self.layout didHideTheHUD];
+    
+    ///隐藏回调
+    if (self.didHideBlock) {
+        WEAKSELF;
+        self.didHideBlock(weakSelf);
+    }
     
     ///隐藏时移除
     if (self.removeOnHide) {

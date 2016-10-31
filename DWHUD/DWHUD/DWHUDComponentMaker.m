@@ -209,10 +209,15 @@
     }
     label.numberOfLines = numberOfLines;
     label.text = string;
+    CGSize fitSize = [label sizeThatFits:CGSizeMake(MAXFLOAT, MAXFLOAT)];
     label.textColor = [UIColor blackColor];
     CGSize size = [label sizeThatFits:limitSize];
-    if (size.height > limitSize.height) {
+    if (size.height > limitSize.height) {///若首次自适应高度已大于限制高度,则已无自动调整的条件
         size.height = limitSize.height;
+        autoresize = NO;
+    }
+    if (fitSize.width <= limitSize.width) {///若可以单行显示，则不自动调整
+        autoresize = NO;
     }
     ///自动规划尺寸（使其在限制尺寸内尽可能保证宽高比1.25）
     if (autoresize) {
@@ -221,10 +226,21 @@
         while (size.width / size.height > limitScale) {
             CGSize tempSize = size;
             limitSize.width = size.width / 1.1;
-            size = [label sizeThatFits:limitSize];
-            if (size.height > limitHeight || size.width < size.height) {
-                size = tempSize;
-                break;
+            if (numberOfLines == 0) {///若为自动换行，则循环调整高度至预期比例
+                size = [label sizeThatFits:limitSize];
+                if (size.height > limitHeight || size.width < size.height) {
+                    size = tempSize;
+                    break;
+                }
+            }
+            else///否则只在不影响文字全部显示的情况下缩小宽度
+            {
+                label.numberOfLines = numberOfLines + 1;
+                size = [label sizeThatFits:limitSize];
+                if (size.height != tempSize.height) {
+                    size = tempSize;
+                    break;
+                }
             }
         }
     }

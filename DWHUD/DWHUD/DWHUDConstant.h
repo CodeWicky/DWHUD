@@ -9,6 +9,8 @@
 #ifndef DWHUDConstant_h
 #define DWHUDConstant_h
 
+//#import "AppDelegate.h"
+
 //宏输出函数
 
 #ifdef DEBUG
@@ -24,5 +26,7 @@
 
 ///weakSelf
 #define WEAKSELF __weak typeof(self)weakSelf = self;
+
+#define APPWindow [[[UIApplication sharedApplication] delegate] window]
 
 #endif /* DWHUDConstant_h */

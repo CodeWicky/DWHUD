@@ -16,6 +16,7 @@
 #import "UIBezierPath+DWPathUtils.h"
 #import "DWHUDCanvas.h"
 #import "DWAnimationHeader.h"
+#import "DWMessageHUD.h"
 @interface ViewController ()
 
 @property (nonatomic ,strong) DWHUDTickIndicator * hud;
@@ -27,9 +28,9 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
-//    [super viewDidLoad];
-//    self.view.backgroundColor = [UIColor lightGrayColor];
-//    
+    [super viewDidLoad];
+    self.view.backgroundColor = [UIColor yellowColor];
+//
 //    DWHUDRingIndicator * hud = [[DWHUDRingIndicator alloc] initWithFrame:CGRectMake(100, 100, 200, 200) needPercentLabel:YES];
 //    hud.tintColor = [UIColor redColor];
 //    hud.textColor = [UIColor redColor];
@@ -43,7 +44,7 @@
 //
 ////    DWHUDWormIndicator * hud = [[DWHUDWormIndicator alloc] initWithFrame:CGRectMake(100, 100, 50, 50) arrOfColors:@[[UIColor redColor],[UIColor blueColor],[UIColor greenColor],[UIColor orangeColor]]];
 ////    hud.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    DWHUDTickIndicator * hud = [[DWHUDTickIndicator alloc] initWithFrame:CGRectMake(100, 100, 150, 150) animated:YES];
+//    DWHUDTickIndicator * hud = [[DWHUDTickIndicator alloc] initWithFrame:CGRectMake(100, 100, 150, 150) animated:YES];
 //    hud.backgroundColor = [UIColor redColor];
 //    self.hud = hud;
 //    [self.view addSubview:hud];
@@ -126,30 +127,32 @@
 //    layer.position = self.view.center;
 //    [self.view.layer addSublayer:layer];
 //    [maker.animation start];
-    UIButton * btn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    [btn setFrame:CGRectMake(0, 0, 100, 30)];
-    btn.center = self.view.center;
-    [self.view addSubview:btn];
-    [btn setBackgroundColor:[UIColor greenColor]];
-    [btn addTarget:self action:@selector(btnAction) forControlEvents:(UIControlEventTouchUpInside)];
-    DWHUDCanvas * cav = [DWHUDCanvas new];
-    cav.layout = [DWHUDLayout new];
-    cav.frame = CGRectMake(0, 0, 100, 100);
-    [self.view addSubview:cav];
-    cav.backgroundColor = [UIColor yellowColor];
-    cav.interceptOutsideUserInteraction = YES;
-    cav.maskBackView = YES;
-    cav.maskBackViewColor = [UIColor redColor];
-    cav.hideOnTouchOutside = YES;
-    cav.removeOnHide = YES;
-    cav.showAnimation = [cav dw_CreateAnimationWithKey:@"showA" animationCreater:^(DWAnimationMaker *maker) {
-        maker.rotateTo(360).duration(4).install();
-    }];
-    cav.hideAnimation = [cav dw_CreateAnimationWithKey:@"hideA" animationCreater:^(DWAnimationMaker *maker) {
-        maker.moveTo(CGPointMake(100, 100)).duration(2).install();
-    }];
-    [cav show];
+//    UIButton * btn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+//    [btn setFrame:CGRectMake(0, 0, 100, 30)];
+//    btn.center = self.view.center;
+//    [self.view addSubview:btn];
+//    [btn setBackgroundColor:[UIColor greenColor]];
+//    [btn addTarget:self action:@selector(btnAction) forControlEvents:(UIControlEventTouchUpInside)];
+//    DWHUDCanvas * cav = [DWHUDCanvas new];
+//    cav.layout = [DWHUDLayout new];
+//    cav.frame = CGRectMake(0, 0, 100, 100);
+//    [self.view addSubview:cav];
+//    cav.backgroundColor = [UIColor yellowColor];
+//    cav.interceptOutsideUserInteraction = YES;
+//    cav.maskBackView = YES;
+//    cav.maskBackViewColor = [UIColor redColor];
+//    cav.hideOnTouchOutside = YES;
+//    cav.removeOnHide = YES;
+//    cav.showAnimation = [cav dw_CreateAnimationWithKey:@"showA" animationCreater:^(DWAnimationMaker *maker) {
+//        maker.rotateTo(360).duration(4).install();
+//    }];
+//    cav.hideAnimation = [cav dw_CreateAnimationWithKey:@"hideA" animationCreater:^(DWAnimationMaker *maker) {
+//        maker.moveTo(CGPointMake(100, 100)).duration(2).install();
+//    }];
+//    [cav show];
 //    [cav hideAnimation];
+    
+    [DWMessageHUD showMessage:@"我是一个好宝宝！我是一个好宝宝！我是一个好宝宝！我是一个好宝宝！我是一个好宝宝！我是一个好宝宝！我是一个好宝宝！" font:[UIFont systemFontOfSize:13] numberOfLines:0 toView:self.view limitSize:CGSizeMake(100, 100) autoResize:YES hideDelay:5];
     
 }
 

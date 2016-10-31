@@ -46,9 +46,19 @@
 @property (nonatomic ,strong) DWAnimation * showAnimation;
 
 /**
+ 完成展示回调
+ */
+@property (nonatomic ,copy) void(^didShowBlock) (DWHUDCanvas *);
+
+/**
  隐藏动画
  */
 @property (nonatomic ,strong) DWAnimation * hideAnimation;
+
+/**
+ 完成隐藏回调
+ */
+@property (nonatomic ,copy) void (^didHideBlock) (DWHUDCanvas *);
 
 /**
  初始化方法
