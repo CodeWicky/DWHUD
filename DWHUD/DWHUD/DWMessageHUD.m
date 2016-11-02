@@ -11,6 +11,7 @@
 #import "DWHUDLayout.h"
 #import "UIColor+DWColorUtils.h"
 #import "DWHUDConstant.h"
+#import "DWAnimationHeader.h"
 @interface DWHUDToastLayout : DWHUDLayout
 
 @end
@@ -30,6 +31,8 @@
 
 @implementation DWMessageHUD
 
+#pragma mark ---接口方法---
+
 +(instancetype)showMessage:(NSString *)msg font:(UIFont *)font numberOfLines:(NSInteger)numberOfLines toView:(UIView *)view limitSize:(CGSize)limitSize autoResize:(BOOL)autoResize hideDelay:(CGFloat)hideDelay
 {
     DWHUDComponentMaker * maker = [DWHUDComponentMaker createLabelComponentWithString:msg font:font numberOfLines:numberOfLines autoresize:autoResize limitSize:limitSize];
@@ -47,7 +50,8 @@
     CGPoint center = CGPointMake(view.frame.size.width / 2.0, view.frame.size.height / 2.0);
     [view addSubview:hud];
     hud.center = center;
-    
+    hud.showAnimation = CreateShowAnimation(hud);
+    hud.hideAnimation = CreateHideAniamtion(hud);
     if (hideDelay > 0) {
         [NSTimer scheduledTimerWithTimeInterval:hideDelay repeats:NO block:^(NSTimer * _Nonnull timer) {
             [hud hide];
@@ -85,4 +89,18 @@
 {
     return [DWMessageHUD showMessage:msg hideDelay:2];
 }
+
+#pragma mark ---工具方法---
+
+DWAnimation * (^CreateShowAnimation)(DWHUDCanvas *) = ^(DWHUDCanvas * canvas){
+    return [canvas dw_CreateAnimationWithKey:@"showAnimation" animationCreater:^(DWAnimationMaker *maker) {
+        maker.scaleFrom(0.7).scaleTo(1).alphaFrom(0.7).alphaTo(1).duration(0.2).install();
+    }];
+};
+
+DWAnimation * (^CreateHideAniamtion)(DWHUDCanvas *) = ^(DWHUDCanvas * canvas){
+    return [canvas dw_CreateAnimationWithKey:@"hideAnimation" animationCreater:^(DWAnimationMaker *maker) {
+        maker.alphaTo(0).duration(0.2).install();
+    }];
+};
 @end

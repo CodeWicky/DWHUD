@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "66E2E56065687C1F62AF3EB38F45A65F86172A15",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "66E2E56065687C1F62AF3EB38F45A65F86172A15" : 9223372036854775807,
+    "5079D46B7DCB6AAE2C5C7C55760C70CF9C978E2D" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "9CF74C0C-BCD2-40C4-91A1-A3654E1ECF55",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "66E2E56065687C1F62AF3EB38F45A65F86172A15" : "DWHUD\/",
+    "5079D46B7DCB6AAE2C5C7C55760C70CF9C978E2D" : "DWHUD\/DWHUD\/DWHUD\/DWAnimation\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "DWHUD",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "DWHUD.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/CodeWicky\/DWAnimation.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5079D46B7DCB6AAE2C5C7C55760C70CF9C978E2D"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/CodeWicky\/DWHUD.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "66E2E56065687C1F62AF3EB38F45A65F86172A15"
+    }
+  ]
+}

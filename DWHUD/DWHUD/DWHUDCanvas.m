@@ -113,6 +113,7 @@
     if (self.maskBackView || self.interceptOutsideUserInteraction) {
         self.backView.hidden = NO;
     }
+    
     if (self.showAnimation && self.showAnimation.duration > 0 ) {
         [self.showAnimation start];
     }
@@ -213,6 +214,10 @@
     WEAKSELF;
     showAnimation.completion = ^(DWAnimation * ani){
         [weakSelf showAction];
+    };
+    showAnimation.animationStart = ^(DWAnimation * ani)
+    {
+        weakSelf.hidden = NO;
     };
     _showAnimation = showAnimation;
 }

@@ -152,7 +152,7 @@
 //    [cav show];
 //    [cav hideAnimation];
     
-    [DWMessageHUD showMessage:@"我是一个好宝宝！我是一个好宝宝！我是一个好宝宝！我是一个好宝宝！我是一个好宝宝！我是一个好宝宝！我是一个好宝宝！" font:[UIFont systemFontOfSize:13] numberOfLines:0 toView:self.view limitSize:CGSizeMake(100, 100) autoResize:YES hideDelay:5];
+    [DWMessageHUD showMessage:@"我是一个好宝宝" hideDelay:5];
     
 }
 

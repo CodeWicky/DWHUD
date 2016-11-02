@@ -18,15 +18,15 @@
 		9B20D7E61DAE39BF00AC2848 /* DWHUDLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B20D7E51DAE39BF00AC2848 /* DWHUDLayout.m */; };
 		9B20D7EF1DAE958B00AC2848 /* DWHUDTickIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B20D7EE1DAE958B00AC2848 /* DWHUDTickIndicator.m */; };
 		9B45EADA1DC4B2B800201521 /* UIColor+DWColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B45EAD91DC4B2B800201521 /* UIColor+DWColorUtils.m */; };
-		9B45EAF11DC4FD2A00201521 /* CALayer+DWAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B45EAE21DC4FD2A00201521 /* CALayer+DWAnimation.m */; };
-		9B45EAF21DC4FD2A00201521 /* DWAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B45EAE41DC4FD2A00201521 /* DWAnimation.m */; };
-		9B45EAF31DC4FD2A00201521 /* DWAnimationAbstraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B45EAE61DC4FD2A00201521 /* DWAnimationAbstraction.m */; };
-		9B45EAF41DC4FD2A00201521 /* DWAnimationGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B45EAE91DC4FD2A00201521 /* DWAnimationGroup.m */; };
-		9B45EAF51DC4FD2A00201521 /* DWAnimationMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B45EAEC1DC4FD2A00201521 /* DWAnimationMaker.m */; };
-		9B45EAF61DC4FD2A00201521 /* DWAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B45EAEE1DC4FD2A00201521 /* DWAnimationManager.m */; };
-		9B45EAF71DC4FD2A00201521 /* UIView+DWAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B45EAF01DC4FD2A00201521 /* UIView+DWAnimation.m */; };
 		9B568BEF1DBE63DF0070D361 /* UIBezierPath+DWPathUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B568BEE1DBE63DF0070D361 /* UIBezierPath+DWPathUtils.m */; };
 		9B568BF91DBFB9690070D361 /* UIImageView+DWGifTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B568BF81DBFB9690070D361 /* UIImageView+DWGifTool.m */; };
+		9B9812D51DCA198F007D41A7 /* CALayer+DWAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9812C61DCA198F007D41A7 /* CALayer+DWAnimation.m */; };
+		9B9812D61DCA198F007D41A7 /* DWAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9812C81DCA198F007D41A7 /* DWAnimation.m */; };
+		9B9812D71DCA198F007D41A7 /* DWAnimationAbstraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9812CA1DCA198F007D41A7 /* DWAnimationAbstraction.m */; };
+		9B9812D81DCA198F007D41A7 /* DWAnimationGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9812CD1DCA198F007D41A7 /* DWAnimationGroup.m */; };
+		9B9812D91DCA198F007D41A7 /* DWAnimationMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9812D01DCA198F007D41A7 /* DWAnimationMaker.m */; };
+		9B9812DA1DCA198F007D41A7 /* DWAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9812D21DCA198F007D41A7 /* DWAnimationManager.m */; };
+		9B9812DB1DCA198F007D41A7 /* UIView+DWAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9812D41DCA198F007D41A7 /* UIView+DWAnimation.m */; };
 		9BABDCD31DB7A323001687E0 /* DWHUDComponentMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BABDCD21DB7A323001687E0 /* DWHUDComponentMaker.m */; };
 		9BF08D3B1DC7913F009B1E15 /* DWMessageHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF08D3A1DC7913F009B1E15 /* DWMessageHUD.m */; };
 		9BFA1C2A1DAF32D700ACFDCE /* DWHUDCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA1C291DAF32D700ACFDCE /* DWHUDCanvas.m */; };
@@ -55,26 +55,26 @@
 		9B45EAD91DC4B2B800201521 /* UIColor+DWColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+DWColorUtils.m"; sourceTree = "<group>"; };
 		9B45EADC1DC4B8B300201521 /* DWHUDHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWHUDHeader.h; sourceTree = "<group>"; };
 		9B45EADF1DC4B92000201521 /* DWHUDConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWHUDConstant.h; sourceTree = "<group>"; };
-		9B45EAE11DC4FD2A00201521 /* CALayer+DWAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+DWAnimation.h"; sourceTree = "<group>"; };
-		9B45EAE21DC4FD2A00201521 /* CALayer+DWAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+DWAnimation.m"; sourceTree = "<group>"; };
-		9B45EAE31DC4FD2A00201521 /* DWAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWAnimation.h; sourceTree = "<group>"; };
-		9B45EAE41DC4FD2A00201521 /* DWAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWAnimation.m; sourceTree = "<group>"; };
-		9B45EAE51DC4FD2A00201521 /* DWAnimationAbstraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWAnimationAbstraction.h; sourceTree = "<group>"; };
-		9B45EAE61DC4FD2A00201521 /* DWAnimationAbstraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWAnimationAbstraction.m; sourceTree = "<group>"; };
-		9B45EAE71DC4FD2A00201521 /* DWAnimationConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWAnimationConstant.h; sourceTree = "<group>"; };
-		9B45EAE81DC4FD2A00201521 /* DWAnimationGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWAnimationGroup.h; sourceTree = "<group>"; };
-		9B45EAE91DC4FD2A00201521 /* DWAnimationGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWAnimationGroup.m; sourceTree = "<group>"; };
-		9B45EAEA1DC4FD2A00201521 /* DWAnimationHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWAnimationHeader.h; sourceTree = "<group>"; };
-		9B45EAEB1DC4FD2A00201521 /* DWAnimationMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWAnimationMaker.h; sourceTree = "<group>"; };
-		9B45EAEC1DC4FD2A00201521 /* DWAnimationMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWAnimationMaker.m; sourceTree = "<group>"; };
-		9B45EAED1DC4FD2A00201521 /* DWAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWAnimationManager.h; sourceTree = "<group>"; };
-		9B45EAEE1DC4FD2A00201521 /* DWAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWAnimationManager.m; sourceTree = "<group>"; };
-		9B45EAEF1DC4FD2A00201521 /* UIView+DWAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+DWAnimation.h"; sourceTree = "<group>"; };
-		9B45EAF01DC4FD2A00201521 /* UIView+DWAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+DWAnimation.m"; sourceTree = "<group>"; };
 		9B568BED1DBE63DF0070D361 /* UIBezierPath+DWPathUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+DWPathUtils.h"; sourceTree = "<group>"; };
 		9B568BEE1DBE63DF0070D361 /* UIBezierPath+DWPathUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+DWPathUtils.m"; sourceTree = "<group>"; };
 		9B568BF71DBFB9690070D361 /* UIImageView+DWGifTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+DWGifTool.h"; sourceTree = "<group>"; };
 		9B568BF81DBFB9690070D361 /* UIImageView+DWGifTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+DWGifTool.m"; sourceTree = "<group>"; };
+		9B9812C51DCA198F007D41A7 /* CALayer+DWAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+DWAnimation.h"; sourceTree = "<group>"; };
+		9B9812C61DCA198F007D41A7 /* CALayer+DWAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+DWAnimation.m"; sourceTree = "<group>"; };
+		9B9812C71DCA198F007D41A7 /* DWAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWAnimation.h; sourceTree = "<group>"; };
+		9B9812C81DCA198F007D41A7 /* DWAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWAnimation.m; sourceTree = "<group>"; };
+		9B9812C91DCA198F007D41A7 /* DWAnimationAbstraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWAnimationAbstraction.h; sourceTree = "<group>"; };
+		9B9812CA1DCA198F007D41A7 /* DWAnimationAbstraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWAnimationAbstraction.m; sourceTree = "<group>"; };
+		9B9812CB1DCA198F007D41A7 /* DWAnimationConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWAnimationConstant.h; sourceTree = "<group>"; };
+		9B9812CC1DCA198F007D41A7 /* DWAnimationGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWAnimationGroup.h; sourceTree = "<group>"; };
+		9B9812CD1DCA198F007D41A7 /* DWAnimationGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWAnimationGroup.m; sourceTree = "<group>"; };
+		9B9812CE1DCA198F007D41A7 /* DWAnimationHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWAnimationHeader.h; sourceTree = "<group>"; };
+		9B9812CF1DCA198F007D41A7 /* DWAnimationMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWAnimationMaker.h; sourceTree = "<group>"; };
+		9B9812D01DCA198F007D41A7 /* DWAnimationMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWAnimationMaker.m; sourceTree = "<group>"; };
+		9B9812D11DCA198F007D41A7 /* DWAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWAnimationManager.h; sourceTree = "<group>"; };
+		9B9812D21DCA198F007D41A7 /* DWAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWAnimationManager.m; sourceTree = "<group>"; };
+		9B9812D31DCA198F007D41A7 /* UIView+DWAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+DWAnimation.h"; sourceTree = "<group>"; };
+		9B9812D41DCA198F007D41A7 /* UIView+DWAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+DWAnimation.m"; sourceTree = "<group>"; };
 		9BABDCD11DB7A323001687E0 /* DWHUDComponentMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWHUDComponentMaker.h; sourceTree = "<group>"; };
 		9BABDCD21DB7A323001687E0 /* DWHUDComponentMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWHUDComponentMaker.m; sourceTree = "<group>"; };
 		9BF08D391DC7913F009B1E15 /* DWMessageHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWMessageHUD.h; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 		9B20D78A1DAA3C8100AC2848 /* DWHUD */ = {
 			isa = PBXGroup;
 			children = (
-				9B45EAE01DC4FD2A00201521 /* DWAnimation */,
+				9B9812C41DCA198F007D41A7 /* DWAnimation */,
 				9B45EAD71DC4B2B800201521 /* DWColorUtils */,
 				9B568BF61DBFB94D0070D361 /* DWGifTool */,
 				9B568BEC1DBE63DF0070D361 /* DWPathUtils */,
@@ -171,29 +171,6 @@
 			path = DWColorUtils;
 			sourceTree = "<group>";
 		};
-		9B45EAE01DC4FD2A00201521 /* DWAnimation */ = {
-			isa = PBXGroup;
-			children = (
-				9B45EAE11DC4FD2A00201521 /* CALayer+DWAnimation.h */,
-				9B45EAE21DC4FD2A00201521 /* CALayer+DWAnimation.m */,
-				9B45EAE31DC4FD2A00201521 /* DWAnimation.h */,
-				9B45EAE41DC4FD2A00201521 /* DWAnimation.m */,
-				9B45EAE51DC4FD2A00201521 /* DWAnimationAbstraction.h */,
-				9B45EAE61DC4FD2A00201521 /* DWAnimationAbstraction.m */,
-				9B45EAE71DC4FD2A00201521 /* DWAnimationConstant.h */,
-				9B45EAE81DC4FD2A00201521 /* DWAnimationGroup.h */,
-				9B45EAE91DC4FD2A00201521 /* DWAnimationGroup.m */,
-				9B45EAEA1DC4FD2A00201521 /* DWAnimationHeader.h */,
-				9B45EAEB1DC4FD2A00201521 /* DWAnimationMaker.h */,
-				9B45EAEC1DC4FD2A00201521 /* DWAnimationMaker.m */,
-				9B45EAED1DC4FD2A00201521 /* DWAnimationManager.h */,
-				9B45EAEE1DC4FD2A00201521 /* DWAnimationManager.m */,
-				9B45EAEF1DC4FD2A00201521 /* UIView+DWAnimation.h */,
-				9B45EAF01DC4FD2A00201521 /* UIView+DWAnimation.m */,
-			);
-			path = DWAnimation;
-			sourceTree = "<group>";
-		};
 		9B568BEC1DBE63DF0070D361 /* DWPathUtils */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,6 +187,29 @@
 				9B568BF81DBFB9690070D361 /* UIImageView+DWGifTool.m */,
 			);
 			path = DWGifTool;
+			sourceTree = "<group>";
+		};
+		9B9812C41DCA198F007D41A7 /* DWAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				9B9812C51DCA198F007D41A7 /* CALayer+DWAnimation.h */,
+				9B9812C61DCA198F007D41A7 /* CALayer+DWAnimation.m */,
+				9B9812C71DCA198F007D41A7 /* DWAnimation.h */,
+				9B9812C81DCA198F007D41A7 /* DWAnimation.m */,
+				9B9812C91DCA198F007D41A7 /* DWAnimationAbstraction.h */,
+				9B9812CA1DCA198F007D41A7 /* DWAnimationAbstraction.m */,
+				9B9812CB1DCA198F007D41A7 /* DWAnimationConstant.h */,
+				9B9812CC1DCA198F007D41A7 /* DWAnimationGroup.h */,
+				9B9812CD1DCA198F007D41A7 /* DWAnimationGroup.m */,
+				9B9812CE1DCA198F007D41A7 /* DWAnimationHeader.h */,
+				9B9812CF1DCA198F007D41A7 /* DWAnimationMaker.h */,
+				9B9812D01DCA198F007D41A7 /* DWAnimationMaker.m */,
+				9B9812D11DCA198F007D41A7 /* DWAnimationManager.h */,
+				9B9812D21DCA198F007D41A7 /* DWAnimationManager.m */,
+				9B9812D31DCA198F007D41A7 /* UIView+DWAnimation.h */,
+				9B9812D41DCA198F007D41A7 /* UIView+DWAnimation.m */,
+			);
+			path = DWAnimation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,24 +283,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B9812D91DCA198F007D41A7 /* DWAnimationMaker.m in Sources */,
 				9B20D7E61DAE39BF00AC2848 /* DWHUDLayout.m in Sources */,
-				9B45EAF51DC4FD2A00201521 /* DWAnimationMaker.m in Sources */,
+				9B9812DB1DCA198F007D41A7 /* UIView+DWAnimation.m in Sources */,
 				9BABDCD31DB7A323001687E0 /* DWHUDComponentMaker.m in Sources */,
 				9BFA1C2A1DAF32D700ACFDCE /* DWHUDCanvas.m in Sources */,
 				9B20D78D1DAA409300AC2848 /* DWHUDRingIndicator.m in Sources */,
 				9B20D77B1DAA3C7200AC2848 /* ViewController.m in Sources */,
+				9B9812DA1DCA198F007D41A7 /* DWAnimationManager.m in Sources */,
+				9B9812D81DCA198F007D41A7 /* DWAnimationGroup.m in Sources */,
 				9BF08D3B1DC7913F009B1E15 /* DWMessageHUD.m in Sources */,
-				9B45EAF41DC4FD2A00201521 /* DWAnimationGroup.m in Sources */,
 				9B20D7A11DAB957C00AC2848 /* DWHUDWormIndicator.m in Sources */,
+				9B9812D51DCA198F007D41A7 /* CALayer+DWAnimation.m in Sources */,
+				9B9812D71DCA198F007D41A7 /* DWAnimationAbstraction.m in Sources */,
 				9B20D7EF1DAE958B00AC2848 /* DWHUDTickIndicator.m in Sources */,
-				9B45EAF31DC4FD2A00201521 /* DWAnimationAbstraction.m in Sources */,
-				9B45EAF21DC4FD2A00201521 /* DWAnimation.m in Sources */,
-				9B45EAF61DC4FD2A00201521 /* DWAnimationManager.m in Sources */,
+				9B9812D61DCA198F007D41A7 /* DWAnimation.m in Sources */,
 				9B568BF91DBFB9690070D361 /* UIImageView+DWGifTool.m in Sources */,
-				9B45EAF71DC4FD2A00201521 /* UIView+DWAnimation.m in Sources */,
 				9B20D7781DAA3C7200AC2848 /* AppDelegate.m in Sources */,
 				9B45EADA1DC4B2B800201521 /* UIColor+DWColorUtils.m in Sources */,
-				9B45EAF11DC4FD2A00201521 /* CALayer+DWAnimation.m in Sources */,
 				9B568BEF1DBE63DF0070D361 /* UIBezierPath+DWPathUtils.m in Sources */,
 				9B20D7751DAA3C7200AC2848 /* main.m in Sources */,
 			);
