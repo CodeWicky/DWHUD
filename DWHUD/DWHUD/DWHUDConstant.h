@@ -29,4 +29,6 @@
 
 #define APPWindow [[[UIApplication sharedApplication] delegate] window]
 
+#define APPRootView APPWindow.rootViewController.view
+
 #endif /* DWHUDConstant_h */

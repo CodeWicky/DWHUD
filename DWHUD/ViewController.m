@@ -17,6 +17,7 @@
 #import "DWHUDCanvas.h"
 #import "DWAnimationHeader.h"
 #import "DWMessageHUD.h"
+#import "DWIndicatorHUD.h"
 @interface ViewController ()
 
 @property (nonatomic ,strong) DWHUDTickIndicator * hud;
@@ -152,7 +153,8 @@
 //    [cav show];
 //    [cav hideAnimation];
     
-    [DWMessageHUD showMessage:@"我是一个好宝宝" hideDelay:5];
+//    [DWMessageHUD showMessage:@"我是一个好宝宝" hideDelay:5];
+    [DWIndicatorHUD showErrorWithMessage:@"我是一个好宝宝"];
     
 }
 

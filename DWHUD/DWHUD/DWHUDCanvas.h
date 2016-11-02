@@ -66,6 +66,12 @@
 -(instancetype)initWithFrame:(CGRect)frame layout:(DWHUDLayout *)layout;
 
 /**
+ 基本画布快速生成
+ 圆角5、背景色0.7黑、关闭交互、隐藏时移除、添加至view的中心
+ */
++(instancetype)createBasicHUDWithFrame:(CGRect)frame layout:(DWHUDLayout *)layout view:(UIView *)view;
+
+/**
  展示方法
  */
 -(void)show;

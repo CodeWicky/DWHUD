@@ -28,6 +28,22 @@
     return self;
 }
 
++(instancetype)createBasicHUDWithFrame:(CGRect)frame layout:(DWHUDLayout *)layout view:(UIView *)view
+{
+    DWHUDCanvas * hud = [[[self class] alloc] initWithFrame:frame layout:layout];
+    
+    hud.interceptOutsideUserInteraction = YES;
+    hud.removeOnHide = YES;
+    
+    [view addSubview:hud];
+    hud.center = CGPointMake(view.bounds.size.width / 2.0, view.bounds.size.height / 2.0);
+    hud.backgroundColor = [UIColor blackColor].alphaWith(0.7);
+    hud.layer.cornerRadius = 5;
+    hud.clipsToBounds = YES;
+    
+    return hud;
+}
+
 -(void)layoutSubviews
 {
     [super layoutSubviews];

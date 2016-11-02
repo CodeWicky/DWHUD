@@ -8,8 +8,6 @@
 
 #import "DWMessageHUD.h"
 #import "DWHUDComponentMaker.h"
-#import "DWHUDLayout.h"
-#import "UIColor+DWColorUtils.h"
 #import "DWHUDConstant.h"
 #import "DWAnimationHeader.h"
 @interface DWHUDToastLayout : DWHUDLayout
@@ -42,16 +40,14 @@
     CGRect frame = CGRectZero;
     frame.size = sizeWithMargin;
     DWHUDToastLayout * layout = [[DWHUDToastLayout alloc] init];
-    DWMessageHUD * hud = [[DWMessageHUD alloc] initWithFrame:frame layout:layout];
+    DWMessageHUD * hud = [DWMessageHUD createBasicHUDWithFrame:frame layout:layout view:view];
+    
     hud.textLabel = maker.component;
     hud.textLabel.textColor = [UIColor whiteColor];
-    hud.interceptOutsideUserInteraction = YES;
-    hud.removeOnHide = YES;
-    CGPoint center = CGPointMake(view.frame.size.width / 2.0, view.frame.size.height / 2.0);
-    [view addSubview:hud];
-    hud.center = center;
+    
     hud.showAnimation = CreateShowAnimation(hud);
     hud.hideAnimation = CreateHideAniamtion(hud);
+    
     if (hideDelay > 0) {
         [NSTimer scheduledTimerWithTimeInterval:hideDelay repeats:NO block:^(NSTimer * _Nonnull timer) {
             [hud hide];
@@ -59,9 +55,6 @@
     }
     
     [hud show];
-    hud.backgroundColor = [UIColor blackColor].alphaWith(0.7);
-    hud.layer.cornerRadius = 5;
-    hud.clipsToBounds = YES;
     return hud;
 }
 
@@ -82,7 +75,7 @@
 
 +(instancetype)showMessage:(NSString *)msg hideDelay:(CGFloat)hideDelay
 {
-    return [DWMessageHUD showMessage:msg toView:APPWindow.rootViewController.view hideDelay:hideDelay];
+    return [DWMessageHUD showMessage:msg toView:APPRootView hideDelay:hideDelay];
 }
 
 +(instancetype)showMessage:(NSString *)msg

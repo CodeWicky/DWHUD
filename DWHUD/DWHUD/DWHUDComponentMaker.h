@@ -14,7 +14,7 @@
  */
 
 #import <UIKit/UIKit.h>
-@class DWAnimation;
+#import "DWAnimation.h"
 @interface DWHUDComponentMaker : NSObject
 
 @property (nonatomic ,strong) DWAnimation * animation;

@@ -27,6 +27,7 @@
 		9B9812D91DCA198F007D41A7 /* DWAnimationMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9812D01DCA198F007D41A7 /* DWAnimationMaker.m */; };
 		9B9812DA1DCA198F007D41A7 /* DWAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9812D21DCA198F007D41A7 /* DWAnimationManager.m */; };
 		9B9812DB1DCA198F007D41A7 /* UIView+DWAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9812D41DCA198F007D41A7 /* UIView+DWAnimation.m */; };
+		9B9812E11DCA449F007D41A7 /* DWIndicatorHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9812E01DCA449F007D41A7 /* DWIndicatorHUD.m */; };
 		9BABDCD31DB7A323001687E0 /* DWHUDComponentMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BABDCD21DB7A323001687E0 /* DWHUDComponentMaker.m */; };
 		9BF08D3B1DC7913F009B1E15 /* DWMessageHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF08D3A1DC7913F009B1E15 /* DWMessageHUD.m */; };
 		9BFA1C2A1DAF32D700ACFDCE /* DWHUDCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA1C291DAF32D700ACFDCE /* DWHUDCanvas.m */; };
@@ -75,6 +76,8 @@
 		9B9812D21DCA198F007D41A7 /* DWAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWAnimationManager.m; sourceTree = "<group>"; };
 		9B9812D31DCA198F007D41A7 /* UIView+DWAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+DWAnimation.h"; sourceTree = "<group>"; };
 		9B9812D41DCA198F007D41A7 /* UIView+DWAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+DWAnimation.m"; sourceTree = "<group>"; };
+		9B9812DF1DCA449F007D41A7 /* DWIndicatorHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWIndicatorHUD.h; sourceTree = "<group>"; };
+		9B9812E01DCA449F007D41A7 /* DWIndicatorHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWIndicatorHUD.m; sourceTree = "<group>"; };
 		9BABDCD11DB7A323001687E0 /* DWHUDComponentMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWHUDComponentMaker.h; sourceTree = "<group>"; };
 		9BABDCD21DB7A323001687E0 /* DWHUDComponentMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWHUDComponentMaker.m; sourceTree = "<group>"; };
 		9BF08D391DC7913F009B1E15 /* DWMessageHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWMessageHUD.h; sourceTree = "<group>"; };
@@ -156,6 +159,8 @@
 				9BFA1C291DAF32D700ACFDCE /* DWHUDCanvas.m */,
 				9BF08D391DC7913F009B1E15 /* DWMessageHUD.h */,
 				9BF08D3A1DC7913F009B1E15 /* DWMessageHUD.m */,
+				9B9812DF1DCA449F007D41A7 /* DWIndicatorHUD.h */,
+				9B9812E01DCA449F007D41A7 /* DWIndicatorHUD.m */,
 				9B45EADC1DC4B8B300201521 /* DWHUDHeader.h */,
 				9B45EADF1DC4B92000201521 /* DWHUDConstant.h */,
 			);
@@ -293,6 +298,7 @@
 				9B9812DA1DCA198F007D41A7 /* DWAnimationManager.m in Sources */,
 				9B9812D81DCA198F007D41A7 /* DWAnimationGroup.m in Sources */,
 				9BF08D3B1DC7913F009B1E15 /* DWMessageHUD.m in Sources */,
+				9B9812E11DCA449F007D41A7 /* DWIndicatorHUD.m in Sources */,
 				9B20D7A11DAB957C00AC2848 /* DWHUDWormIndicator.m in Sources */,
 				9B9812D51DCA198F007D41A7 /* CALayer+DWAnimation.m in Sources */,
 				9B9812D71DCA198F007D41A7 /* DWAnimationAbstraction.m in Sources */,
