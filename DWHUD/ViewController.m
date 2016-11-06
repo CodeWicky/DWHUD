@@ -154,7 +154,7 @@
 //    [cav hideAnimation];
     
 //    [DWMessageHUD showMessage:@"我是一个好宝宝" hideDelay:5];
-    [DWIndicatorHUD showErrorWithMessage:@"我是一个好宝宝"];
+    [DWIndicatorHUD showExclamationWithMessage:@"我是一个好宝宝"];
     
 }
 

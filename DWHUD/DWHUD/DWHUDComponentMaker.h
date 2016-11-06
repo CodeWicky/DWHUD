@@ -39,7 +39,7 @@
 /**
  生成叹号组件
  */
-+(instancetype)createExclamationComponentWithFrame:(CGRect)frame;
++(instancetype)createExclamationComponentWithFrame:(CGRect)frame strokeColor:(UIColor *)strokeColor;
 
 /**
  生成label组件

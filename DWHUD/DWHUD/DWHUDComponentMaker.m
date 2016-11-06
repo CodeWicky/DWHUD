@@ -136,15 +136,16 @@
     }];
 }
 
-+(instancetype)createExclamationComponentWithFrame:(CGRect)frame
++(instancetype)createExclamationComponentWithFrame:(CGRect)frame strokeColor:(UIColor *)strokeColor
 {
     DWHUDComponentMaker * comp = [[DWHUDComponentMaker alloc] init];
-    comp.component = [comp createExclamationLayerWithFrame:frame];
+    comp.component = [comp createExclamationLayerWithFrame:frame strokeColor:strokeColor];
     comp.animation = [comp createExclamationAnimationWithLayer:comp.component];
     return comp;
 }
 
 -(CALayer *)createExclamationLayerWithFrame:(CGRect)frame
+                            strokeColor:(UIColor *)strokeColor
 {
     CALayer * layer = [CALayer layer];
     layer.backgroundColor = [UIColor clearColor].CGColor;
@@ -155,7 +156,7 @@
     CGFloat length = width / 6;
     
     CAShapeLayer * layer1 = [CAShapeLayer layer];
-    layer1.fillColor = [UIColor blackColor].CGColor;
+    layer1.fillColor = strokeColor.CGColor;
     layer1.bounds = CGRectMake(0, 0, width, width);
     layer1.position = CGPointMake(frame.size.width / 2.0, frame.size.height / 2.0);
     [layer addSublayer:layer1];
@@ -166,7 +167,7 @@
     layer1.path = path.CGPath;
     
     CAShapeLayer * layer2 = [CAShapeLayer layer];
-    layer2.fillColor = [UIColor blackColor].CGColor;
+    layer2.fillColor = strokeColor.CGColor;
     layer2.bounds = CGRectMake(0, 0, width, width);
     layer2.position = CGPointMake(frame.size.width / 2.0, frame.size.height / 2.0);
     [layer addSublayer:layer2];
