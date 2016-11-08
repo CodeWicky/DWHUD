@@ -18,6 +18,8 @@
 #import "DWAnimationHeader.h"
 #import "DWMessageHUD.h"
 #import "DWIndicatorHUD.h"
+#import "DWPictureHUD.h"
+#import "UIImageView+DWGifTool.h"
 @interface ViewController ()
 
 @property (nonatomic ,strong) DWHUDTickIndicator * hud;
@@ -153,9 +155,15 @@
 //    [cav show];
 //    [cav hideAnimation];
     
-//    [DWMessageHUD showMessage:@"我是一个好宝宝" hideDelay:5];
-    [DWIndicatorHUD showExclamationWithMessage:@"我是一个好宝宝"];
+//    DWMessageHUD * hud = [DWMessageHUD showMessage:@"我是一个好宝宝" hideDelay:5];
+//    hud.verticalOffset = 100;
     
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        DWIndicatorHUD * hud = [DWIndicatorHUD showExclamationWithMessage:@"我是一个好宝宝"];
+        hud.textLabelOffset = 100;
+    });
+//    DWPictureHUD * hud = [DWPictureHUD showPicture:@"http://img1.gtimg.com/news/pics/18462/18462117.jpg"  picSize:CGSizeMake(200, 200)];
+//    hud.layer.cornerRadius = 100;
 }
 
 

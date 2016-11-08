@@ -36,6 +36,11 @@
 @property (nonatomic ,assign) BOOL hideOnTouchOutside;
 
 /**
+ 内部点击时是否隐藏
+ */
+@property (nonatomic ,assign) BOOL hideOnTouchInside;
+
+/**
  隐藏时移除
  */
 @property (nonatomic ,assign) BOOL removeOnHide;
@@ -69,7 +74,7 @@
  基本画布快速生成
  圆角5、背景色0.7黑、关闭交互、隐藏时移除、添加至view的中心
  */
-+(instancetype)createBasicHUDWithFrame:(CGRect)frame layout:(DWHUDLayout *)layout view:(UIView *)view;
+-(instancetype)initBasicHUDWithFrame:(CGRect)frame layout:(DWHUDLayout *)layout view:(UIView *)view;
 
 /**
  展示方法

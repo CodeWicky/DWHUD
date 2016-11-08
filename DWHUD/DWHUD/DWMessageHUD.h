@@ -10,7 +10,15 @@
 
 @interface DWMessageHUD : DWHUDCanvas
 
+/**
+ toast标签
+ */
 @property (nonatomic ,strong) UILabel * textLabel;
+
+/**
+ toast距父视图Y中中心的偏移量
+ */
+@property (nonatomic ,assign) CGFloat verticalOffset;
 
 /**
  自动展示toast并于两秒后自动隐藏
@@ -62,4 +70,14 @@
                 autoResize:(BOOL)autoResize
                  hideDelay:(CGFloat)hideDelay;
 
+/**
+ 根据条件生成toast实例，并不展示
+ */
+-(instancetype)initWithMessage:(NSString *)msg
+                          font:(UIFont *)font
+                 numberOfLines:(NSInteger)numberOfLines
+                        toView:(UIView *)view
+                     limitSize:(CGSize)limitSize
+                    autoResize:(BOOL)autoResize
+                     hideDelay:(CGFloat)hideDelay;
 @end

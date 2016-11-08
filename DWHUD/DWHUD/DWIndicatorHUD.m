@@ -22,11 +22,12 @@
     DWIndicatorHUD * hud = self.canvas;
     CGFloat width = hud.bounds.size.width;
     hud.indicator.position = CGPointMake(width / 2.0, 20 + MARGIN);
-    
     [hud.layer addSublayer:hud.indicator];
     if (hud.textLabel) {
+        hud.frame = CGRectMake(0, 0, hud.bounds.size.width, hud.textLabel.bounds.size.height + 50 + (hud.textLabelOffset?hud.textLabelOffset:MARGIN));
+        hud.center = CGPointMake(hud.superview.bounds.size.width / 2.0, hud.superview.bounds.size.height/ 2.0);
         CGRect frame = hud.textLabel.frame;
-        frame.origin = CGPointMake(MARGIN, 50);
+        frame.origin = CGPointMake(hud.bounds.size.width / 2.0 - hud.textLabel.bounds.size.width / 2.0, 45 + (hud.textLabelOffset?hud.textLabelOffset:MARGIN));
         hud.textLabel.frame = frame;
         [hud addSubview:hud.textLabel];
     }
@@ -36,19 +37,12 @@
 
 @implementation DWIndicatorHUD
 
-+(instancetype)showErrorWithMessage:(NSString *)msg
+-(instancetype)initCompleteWithMessage:(NSString *)msg toView:(UIView *)view hideOnTouchInside:(BOOL)hideOnTouchInside
 {
-    return [DWIndicatorHUD showErrorWithMessage:msg toView:APPRootView hideOnTouchInside:NO];
-}
-
-+(instancetype)showErrorWithMessage:(NSString *)msg toView:(UIView *)view hideOnTouchInside:(BOOL)hideOnTouchInside
-{
-    
-    DWHUDComponentMaker * maker = [DWHUDComponentMaker createCrossComponentWithFrame:CGRectMake(0, 0, 40, 40)];
-    CAShapeLayer * cross = maker.component;
-    cross.strokeColor = [UIColor whiteColor].CGColor;
-    
-    return [DWIndicatorHUD showIndicator:cross withAnimation:maker.animation msg:msg needRing:YES toView:view hideOnTouchInside:hideOnTouchInside];
+    DWHUDComponentMaker * maker = [DWHUDComponentMaker createTickComponentWithFrame:CGRectMake(0, 0, 40, 40)];
+    CAShapeLayer * tick = maker.component;
+    tick.strokeColor = [UIColor whiteColor].CGColor;
+    return [self initIndicator:tick withAnimation:maker.animation msg:msg needRing:YES toView:view hideOnTouchInside:hideOnTouchInside];
 }
 
 +(instancetype)showCompleteWithMessage:(NSString *)msg
@@ -58,11 +52,41 @@
 
 +(instancetype)showCompleteWithMessage:(NSString *)msg toView:(UIView *)view hideOnTouchInside:(BOOL)hideOnTouchInside
 {
-    DWHUDComponentMaker * maker = [DWHUDComponentMaker createTickComponentWithFrame:CGRectMake(0, 0, 40, 40)];
-    CAShapeLayer * tick = maker.component;
-    tick.strokeColor = [UIColor whiteColor].CGColor;
-    
-    return [DWIndicatorHUD showIndicator:tick withAnimation:maker.animation msg:msg needRing:YES toView:view hideOnTouchInside:hideOnTouchInside];
+    DWIndicatorHUD * hud = [[DWIndicatorHUD alloc] initCompleteWithMessage:msg toView:view hideOnTouchInside:hideOnTouchInside];
+    [hud show];
+    if (hud.showAnimation) {
+        [hud.showAnimation start];
+    }
+    return hud;
+}
+
+-(instancetype)initErrorWithMessage:(NSString *)msg toView:(UIView *)view hideOnTouchInside:(BOOL)hideOnTouchInside
+{
+    DWHUDComponentMaker * maker = [DWHUDComponentMaker createCrossComponentWithFrame:CGRectMake(0, 0, 40, 40)];
+    CAShapeLayer * cross = maker.component;
+    cross.strokeColor = [UIColor whiteColor].CGColor;
+    return [self initIndicator:cross withAnimation:maker.animation msg:msg needRing:YES toView:view hideOnTouchInside:hideOnTouchInside];
+}
+
++(instancetype)showErrorWithMessage:(NSString *)msg
+{
+    return [DWIndicatorHUD showErrorWithMessage:msg toView:APPRootView hideOnTouchInside:NO];
+}
+
++(instancetype)showErrorWithMessage:(NSString *)msg toView:(UIView *)view hideOnTouchInside:(BOOL)hideOnTouchInside
+{
+    DWIndicatorHUD * hud = [[DWIndicatorHUD alloc] initErrorWithMessage:msg toView:view hideOnTouchInside:hideOnTouchInside];
+    [hud show];
+    if (hud.showAnimation) {
+        [hud.showAnimation start];
+    }
+    return hud;
+}
+
+-(instancetype)initExclamationWithMessage:(NSString *)msg toView:(UIView *)view hideOnTouchInside:(BOOL)hideOnTouchInside
+{
+    DWHUDComponentMaker * maker = [DWHUDComponentMaker createExclamationComponentWithFrame:CGRectMake(0, 0, 40, 40) strokeColor:[UIColor whiteColor]];
+    return [self initIndicator:maker.component withAnimation:maker.animation msg:msg needRing:YES toView:view hideOnTouchInside:hideOnTouchInside];
 }
 
 +(instancetype)showExclamationWithMessage:(NSString *)msg
@@ -72,17 +96,30 @@
 
 +(instancetype)showExclamationWithMessage:(NSString *)msg toView:(UIView *)view hideOnTouchInside:(BOOL)hideOnTouchInside
 {
-    DWHUDComponentMaker * maker = [DWHUDComponentMaker createExclamationComponentWithFrame:CGRectMake(0, 0, 40, 40) strokeColor:[UIColor whiteColor]];
-    
-    return [DWIndicatorHUD showIndicator:maker.component withAnimation:maker.animation msg:msg needRing:YES toView:view hideOnTouchInside:hideOnTouchInside];
+    DWIndicatorHUD * hud = [[DWIndicatorHUD alloc] initExclamationWithMessage:msg toView:view hideOnTouchInside:hideOnTouchInside];
+    [hud show];
+    if (hud.showAnimation) {
+        [hud.showAnimation start];
+    }
+    return hud;
 }
 
-+(instancetype)showIndicator:(CALayer *)indicator withAnimation:(DWAnimation *)animaiton msg:(NSString *)msg  needRing:(BOOL)needRing toView:(UIView *)view hideOnTouchInside:(BOOL)hideOnTouchInside
+-(instancetype)initIndicator:(CALayer *)indicator withAnimation:(DWAnimation *)animaiton msg:(NSString *)msg needRing:(BOOL)needRing toView:(UIView *)view hideOnTouchInside:(BOOL)hideOnTouchInside
 {
     CALayer * layer = needRing?[DWIndicatorHUD createRingForLayer:indicator]:indicator;
-    DWIndicatorHUD * hud = [DWIndicatorHUD createIndicatorHUDWithIndicator:layer indicatorAnimation:animaiton message:msg view:view];
-    hud.hideOnTouchInside = hideOnTouchInside;
-    hud.hideOnTouchOutside = NO;
+    self = [self initIndicatorHUDWithIndicator:layer indicatorAnimation:animaiton message:msg view:view];
+    self.hideOnTouchInside = hideOnTouchInside;
+    self.hideOnTouchOutside = NO;
+    return self;
+}
+
++(instancetype)showIndicator:(CALayer *)indicator withAnimation:(DWAnimation *)animaiton msg:(NSString *)msg needRing:(BOOL)needRing toView:(UIView *)view hideOnTouchInside:(BOOL)hideOnTouchInside
+{
+    DWIndicatorHUD * hud = [[DWIndicatorHUD alloc] initIndicator:indicator withAnimation:animaiton msg:msg needRing:needRing toView:view hideOnTouchInside:hideOnTouchInside];
+    [hud show];
+    if (hud.showAnimation) {
+        [hud.showAnimation start];
+    }
     return hud;
 }
 
@@ -92,7 +129,7 @@
 }
 
 #pragma mark ---工具方法---
-+(instancetype)createIndicatorHUDWithIndicator:(CALayer *)indicator indicatorAnimation:(DWAnimation *)animation message:(NSString *)msg view:(UIView *)view
+-(instancetype)initIndicatorHUDWithIndicator:(CALayer *)indicator indicatorAnimation:(DWAnimation *)animation message:(NSString *)msg view:(UIView *)view
 {
     DWHUDComponentMaker * comp = nil;
     if (msg.length) {
@@ -103,24 +140,23 @@
     if (comp) {
         UILabel * label = comp.component;
         CGSize lbSz = label.bounds.size;
-        indicatorFrm = CGRectMake(0, 0, lbSz.width + MARGIN * 2, lbSz.height + 50 + MARGIN);
+        CGFloat tempWidth = lbSz.width + MARGIN * 2;
+        indicatorFrm = CGRectMake(0, 0, tempWidth > 50 ? tempWidth : 50, lbSz.height + 50 + MARGIN);
     }
     
     DWHUDIndicatorLayout * layout = [[DWHUDIndicatorLayout alloc] init];
     
-    DWIndicatorHUD * hud = [DWIndicatorHUD createBasicHUDWithFrame:indicatorFrm layout:layout view:view];
-    
-    hud.indicator = indicator;
-    if (comp) {
-        hud.textLabel = comp.component;
-        hud.textLabel.textColor = [UIColor whiteColor];
-        hud.textLabel.backgroundColor = [UIColor clearColor];
+    self = [super initBasicHUDWithFrame:indicatorFrm layout:layout view:view];
+    if (self) {
+        self.showAnimation = animation;
+        self.indicator = indicator;
+        if (comp) {
+            self.textLabel = comp.component;
+            self.textLabel.textColor = [UIColor whiteColor];
+            self.textLabel.backgroundColor = [UIColor clearColor];
+        }
     }
-    [hud show];
-    if (animation) {
-        [animation start];
-    }
-    return hud;
+    return self;
 }
 
 ///为一个layer创建一个圆环
@@ -135,13 +171,11 @@
     return ringLayer;
 }
 
-///点击时隐藏的实现
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+-(void)setTextLabelOffset:(CGFloat)textLabelOffset
 {
-    if (self.hideOnTouchInside) {
-        [self hide];
+    if (self.textLabel) {
+        _textLabelOffset = textLabelOffset;
+        [self layoutIfNeeded];
     }
 }
-
-
 @end

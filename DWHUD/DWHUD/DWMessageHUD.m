@@ -21,6 +21,9 @@
     DWMessageHUD * hud = self.canvas;
     
     CGPoint center = CGPointMake(hud.frame.size.width / 2.0, hud.frame.size.height / 2.0);
+    if (hud.verticalOffset) {
+        hud.center = CGPointMake(hud.superview.bounds.size.width / 2.0, hud.superview.bounds.size.height / 2.0 + hud.verticalOffset);
+    }
     [hud addSubview:hud.textLabel];
     hud.textLabel.center = center;
 }
@@ -31,7 +34,7 @@
 
 #pragma mark ---接口方法---
 
-+(instancetype)showMessage:(NSString *)msg font:(UIFont *)font numberOfLines:(NSInteger)numberOfLines toView:(UIView *)view limitSize:(CGSize)limitSize autoResize:(BOOL)autoResize hideDelay:(CGFloat)hideDelay
+-(instancetype)initWithMessage:(NSString *)msg font:(UIFont *)font numberOfLines:(NSInteger)numberOfLines toView:(UIView *)view limitSize:(CGSize)limitSize autoResize:(BOOL)autoResize hideDelay:(CGFloat)hideDelay
 {
     DWHUDComponentMaker * maker = [DWHUDComponentMaker createLabelComponentWithString:msg font:font numberOfLines:numberOfLines autoresize:autoResize limitSize:limitSize];
     CGSize size = ((UILabel *)maker.component).frame.size;
@@ -40,23 +43,32 @@
     CGRect frame = CGRectZero;
     frame.size = sizeWithMargin;
     DWHUDToastLayout * layout = [[DWHUDToastLayout alloc] init];
-    DWMessageHUD * hud = [DWMessageHUD createBasicHUDWithFrame:frame layout:layout view:view];
-    
-    hud.textLabel = maker.component;
-    hud.textLabel.textColor = [UIColor whiteColor];
-    
-    hud.showAnimation = CreateShowAnimation(hud);
-    hud.hideAnimation = CreateHideAniamtion(hud);
-    
-    if (hideDelay > 0) {
-        [NSTimer scheduledTimerWithTimeInterval:hideDelay repeats:NO block:^(NSTimer * _Nonnull timer) {
-            [hud hide];
-        }];
+    self = [super initBasicHUDWithFrame:frame layout:layout view:view];
+    if (self) {
+        self.textLabel = maker.component;
+        self.textLabel.textColor = [UIColor whiteColor];
+        
+        self.showAnimation = CreateShowAnimation(self);
+        self.hideAnimation = CreateHideAniamtion(self);
+        
+        if (hideDelay > 0) {
+            [NSTimer scheduledTimerWithTimeInterval:hideDelay repeats:NO block:^(NSTimer * _Nonnull timer) {
+                [self hide];
+            }];
+        }
     }
+    return self;
+}
+
++(instancetype)showMessage:(NSString *)msg font:(UIFont *)font numberOfLines:(NSInteger)numberOfLines toView:(UIView *)view limitSize:(CGSize)limitSize autoResize:(BOOL)autoResize hideDelay:(CGFloat)hideDelay
+{
     
+    DWMessageHUD * hud = [[DWMessageHUD alloc] initWithMessage:msg font:font numberOfLines:numberOfLines toView:view limitSize:limitSize autoResize:autoResize hideDelay:hideDelay];
     [hud show];
     return hud;
 }
+
+
 
 +(instancetype)showMessage:(NSString *)msg font:(UIFont *)font toView:(UIView *)view limitSize:(CGSize)limitSize autoResize:(BOOL)autoResize hideDelay:(CGFloat)hideDelay
 {
@@ -96,4 +108,12 @@ DWAnimation * (^CreateHideAniamtion)(DWHUDCanvas *) = ^(DWHUDCanvas * canvas){
         maker.alphaTo(0).duration(0.2).install();
     }];
 };
+
+#pragma mark ---setter/getter---
+-(void)setVerticalOffset:(CGFloat)verticalOffset
+{
+    _verticalOffset = verticalOffset;
+    [self layoutIfNeeded];
+}
+
 @end

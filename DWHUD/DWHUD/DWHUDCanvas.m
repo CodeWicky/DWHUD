@@ -28,7 +28,7 @@
     return self;
 }
 
-+(instancetype)createBasicHUDWithFrame:(CGRect)frame layout:(DWHUDLayout *)layout view:(UIView *)view
+-(instancetype)initBasicHUDWithFrame:(CGRect)frame layout:(DWHUDLayout *)layout view:(UIView *)view
 {
     DWHUDCanvas * hud = [[[self class] alloc] initWithFrame:frame layout:layout];
     
@@ -245,5 +245,13 @@
         [weakSelf hideAction];
     };
     _hideAnimation = hideAnimation;
+}
+
+///点击时隐藏的实现
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    if (self.hideOnTouchInside) {
+        [self hide];
+    }
 }
 @end
