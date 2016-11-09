@@ -7,7 +7,7 @@
 //
 
 #import "DWHUDCanvas.h"
-
+#import "DWHUDConstant.h"
 @interface DWIndicatorHUD : DWHUDCanvas
 
 /**
@@ -24,6 +24,16 @@
  提示标签距离指示器的偏移量
  */
 @property (nonatomic ,assign) CGFloat textLabelOffset;
+
+/**
+ 展示动画种类
+ */
+@property (nonatomic ,assign) DWHUDAnimatoinType showType;
+
+/**
+ 隐藏动画种类
+ */
+@property (nonatomic ,assign) DWHUDAnimatoinType hideType;
 
 /**
  展示完成信息

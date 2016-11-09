@@ -9,7 +9,11 @@
 #ifndef DWHUDConstant_h
 #define DWHUDConstant_h
 
-//#import "AppDelegate.h"
+typedef NS_ENUM(NSInteger , DWHUDAnimatoinType) {///DWHUD动画形式
+    DWHUDAnimatoinTypeFallIn = 0,///坠入
+    DWHUDAnimatoinTypeFallOut,///落出
+    DWHUDAnimatoinTypeNone///取消动画
+};
 
 //宏输出函数
 
@@ -30,5 +34,7 @@
 #define APPWindow [[[UIApplication sharedApplication] delegate] window]
 
 #define APPRootView APPWindow.rootViewController.view
+
+
 
 #endif /* DWHUDConstant_h */

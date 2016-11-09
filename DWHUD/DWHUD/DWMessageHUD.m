@@ -99,13 +99,13 @@
 
 DWAnimation * (^CreateShowAnimation)(DWHUDCanvas *) = ^(DWHUDCanvas * canvas){
     return [canvas dw_CreateAnimationWithKey:@"showAnimation" animationCreater:^(DWAnimationMaker *maker) {
-        maker.scaleFrom(0.7).scaleTo(1).alphaFrom(0.7).alphaTo(1).duration(0.2).install();
+        maker.scaleFrom(1.3).scaleTo(1).duration(0.2).install();
     }];
 };
 
 DWAnimation * (^CreateHideAniamtion)(DWHUDCanvas *) = ^(DWHUDCanvas * canvas){
     return [canvas dw_CreateAnimationWithKey:@"hideAnimation" animationCreater:^(DWAnimationMaker *maker) {
-        maker.alphaTo(0).duration(0.2).install();
+        maker.scaleTo(0.7).alphaTo(0).duration(0.2).install();
     }];
 };
 

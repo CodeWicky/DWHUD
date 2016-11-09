@@ -17,6 +17,7 @@
 		9B20D7A11DAB957C00AC2848 /* DWHUDWormIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B20D7A01DAB957C00AC2848 /* DWHUDWormIndicator.m */; };
 		9B20D7E61DAE39BF00AC2848 /* DWHUDLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B20D7E51DAE39BF00AC2848 /* DWHUDLayout.m */; };
 		9B20D7EF1DAE958B00AC2848 /* DWHUDTickIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B20D7EE1DAE958B00AC2848 /* DWHUDTickIndicator.m */; };
+		9B2AF2EC1DD3634900308C33 /* DWHUDAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AF2EB1DD3634900308C33 /* DWHUDAnimationManager.m */; };
 		9B45EADA1DC4B2B800201521 /* UIColor+DWColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B45EAD91DC4B2B800201521 /* UIColor+DWColorUtils.m */; };
 		9B568BEF1DBE63DF0070D361 /* UIBezierPath+DWPathUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B568BEE1DBE63DF0070D361 /* UIBezierPath+DWPathUtils.m */; };
 		9B568BF91DBFB9690070D361 /* UIImageView+DWGifTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B568BF81DBFB9690070D361 /* UIImageView+DWGifTool.m */; };
@@ -53,6 +54,8 @@
 		9B20D7E51DAE39BF00AC2848 /* DWHUDLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWHUDLayout.m; sourceTree = "<group>"; };
 		9B20D7ED1DAE958B00AC2848 /* DWHUDTickIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWHUDTickIndicator.h; sourceTree = "<group>"; };
 		9B20D7EE1DAE958B00AC2848 /* DWHUDTickIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWHUDTickIndicator.m; sourceTree = "<group>"; };
+		9B2AF2EA1DD3634900308C33 /* DWHUDAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWHUDAnimationManager.h; sourceTree = "<group>"; };
+		9B2AF2EB1DD3634900308C33 /* DWHUDAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWHUDAnimationManager.m; sourceTree = "<group>"; };
 		9B45EAD81DC4B2B800201521 /* UIColor+DWColorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+DWColorUtils.h"; sourceTree = "<group>"; };
 		9B45EAD91DC4B2B800201521 /* UIColor+DWColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+DWColorUtils.m"; sourceTree = "<group>"; };
 		9B45EADC1DC4B8B300201521 /* DWHUDHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWHUDHeader.h; sourceTree = "<group>"; };
@@ -168,6 +171,8 @@
 				9B9812E01DCA449F007D41A7 /* DWIndicatorHUD.m */,
 				9B45EADC1DC4B8B300201521 /* DWHUDHeader.h */,
 				9B45EADF1DC4B92000201521 /* DWHUDConstant.h */,
+				9B2AF2EA1DD3634900308C33 /* DWHUDAnimationManager.h */,
+				9B2AF2EB1DD3634900308C33 /* DWHUDAnimationManager.m */,
 			);
 			path = DWHUD;
 			sourceTree = "<group>";
@@ -306,6 +311,7 @@
 				9B9812E11DCA449F007D41A7 /* DWIndicatorHUD.m in Sources */,
 				9B20D7A11DAB957C00AC2848 /* DWHUDWormIndicator.m in Sources */,
 				9B9812D51DCA198F007D41A7 /* CALayer+DWAnimation.m in Sources */,
+				9B2AF2EC1DD3634900308C33 /* DWHUDAnimationManager.m in Sources */,
 				9B9812D71DCA198F007D41A7 /* DWAnimationAbstraction.m in Sources */,
 				9B20D7EF1DAE958B00AC2848 /* DWHUDTickIndicator.m in Sources */,
 				9B9812D61DCA198F007D41A7 /* DWAnimation.m in Sources */,

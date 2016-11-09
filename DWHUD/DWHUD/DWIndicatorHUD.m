@@ -8,7 +8,7 @@
 
 #import "DWIndicatorHUD.h"
 #import "DWHUDComponentMaker.h"
-#import "DWHUDConstant.h"
+#import "DWHUDAnimationManager.h"
 #define MARGIN 5
 
 @interface DWHUDIndicatorLayout : DWHUDLayout
@@ -35,6 +35,13 @@
 
 @end
 
+@interface DWIndicatorHUD ()
+
+///HUD组件动画
+@property (nonatomic ,strong) DWAnimation * compAnimation;
+
+@end
+
 @implementation DWIndicatorHUD
 
 -(instancetype)initCompleteWithMessage:(NSString *)msg toView:(UIView *)view hideOnTouchInside:(BOOL)hideOnTouchInside
@@ -53,10 +60,8 @@
 +(instancetype)showCompleteWithMessage:(NSString *)msg toView:(UIView *)view hideOnTouchInside:(BOOL)hideOnTouchInside
 {
     DWIndicatorHUD * hud = [[DWIndicatorHUD alloc] initCompleteWithMessage:msg toView:view hideOnTouchInside:hideOnTouchInside];
+    [hud setTwoAnimationForHUD:hud];
     [hud show];
-    if (hud.showAnimation) {
-        [hud.showAnimation start];
-    }
     return hud;
 }
 
@@ -76,10 +81,8 @@
 +(instancetype)showErrorWithMessage:(NSString *)msg toView:(UIView *)view hideOnTouchInside:(BOOL)hideOnTouchInside
 {
     DWIndicatorHUD * hud = [[DWIndicatorHUD alloc] initErrorWithMessage:msg toView:view hideOnTouchInside:hideOnTouchInside];
+    [hud setTwoAnimationForHUD:hud];
     [hud show];
-    if (hud.showAnimation) {
-        [hud.showAnimation start];
-    }
     return hud;
 }
 
@@ -97,10 +100,8 @@
 +(instancetype)showExclamationWithMessage:(NSString *)msg toView:(UIView *)view hideOnTouchInside:(BOOL)hideOnTouchInside
 {
     DWIndicatorHUD * hud = [[DWIndicatorHUD alloc] initExclamationWithMessage:msg toView:view hideOnTouchInside:hideOnTouchInside];
+    [hud setTwoAnimationForHUD:hud];
     [hud show];
-    if (hud.showAnimation) {
-        [hud.showAnimation start];
-    }
     return hud;
 }
 
@@ -116,11 +117,27 @@
 +(instancetype)showIndicator:(CALayer *)indicator withAnimation:(DWAnimation *)animaiton msg:(NSString *)msg needRing:(BOOL)needRing toView:(UIView *)view hideOnTouchInside:(BOOL)hideOnTouchInside
 {
     DWIndicatorHUD * hud = [[DWIndicatorHUD alloc] initIndicator:indicator withAnimation:animaiton msg:msg needRing:needRing toView:view hideOnTouchInside:hideOnTouchInside];
+    [hud setTwoAnimationForHUD:hud];
     [hud show];
-    if (hud.showAnimation) {
-        [hud.showAnimation start];
-    }
     return hud;
+}
+
+-(void)setTwoAnimationForHUD:(DWIndicatorHUD *)hud
+{
+    if (hud.showAnimation) {
+        __weak typeof(hud) weakHUD = hud;
+        hud.showAnimation.completion = ^(DWAnimation * ani){
+            if (weakHUD.compAnimation) {
+                [weakHUD.compAnimation start];
+            }
+        };
+    }
+    else
+    {
+        if (hud.compAnimation) {
+            [hud.compAnimation start];
+        }
+    }
 }
 
 +(instancetype)showIndicator:(CALayer *)indicator withAnimation:(DWAnimation *)animaiton msg:(NSString *)msg
@@ -148,7 +165,9 @@
     
     self = [super initBasicHUDWithFrame:indicatorFrm layout:layout view:view];
     if (self) {
-        self.showAnimation = animation;
+        self.compAnimation = animation;
+        self.showType = DWHUDAnimatoinTypeFallIn;
+        self.hideType = DWHUDAnimatoinTypeFallOut;
         self.indicator = indicator;
         if (comp) {
             self.textLabel = comp.component;
@@ -176,6 +195,32 @@
     if (self.textLabel) {
         _textLabelOffset = textLabelOffset;
         [self layoutIfNeeded];
+    }
+}
+
+-(void)setShowType:(DWHUDAnimatoinType)showType
+{
+    if (showType == DWHUDAnimatoinTypeFallIn) {
+        _showType = showType;
+        self.showAnimation = [DWHUDAnimationManager createFallInAnimationWithView:self];
+    }
+    else if (showType == DWHUDAnimatoinTypeNone)
+    {
+        _showType = showType;
+        self.showAnimation = nil;
+    }
+}
+
+-(void)setHideType:(DWHUDAnimatoinType)hideType
+{
+    if (hideType == DWHUDAnimatoinTypeFallOut) {
+        _hideType = hideType;
+        self.hideAnimation = [DWHUDAnimationManager createFallOutAnimationWithView:self];
+    }
+    else if (hideType == DWHUDAnimatoinTypeNone)
+    {
+        _hideType = hideType;
+        self.hideAnimation = nil;
     }
 }
 @end

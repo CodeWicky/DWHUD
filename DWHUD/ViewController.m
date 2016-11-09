@@ -155,18 +155,26 @@
 //    [cav show];
 //    [cav hideAnimation];
     
-//    DWMessageHUD * hud = [DWMessageHUD showMessage:@"我是一个好宝宝" hideDelay:5];
 //    hud.verticalOffset = 100;
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        DWMessageHUD * hud = [DWMessageHUD showMessage:@"我是一个好宝宝" hideDelay:5];
         DWIndicatorHUD * hud = [DWIndicatorHUD showExclamationWithMessage:@"我是一个好宝宝"];
-        hud.textLabelOffset = 100;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [hud hide];
+        });
+//        hud.textLabelOffset = 100;
     });
 //    DWPictureHUD * hud = [DWPictureHUD showPicture:@"http://img1.gtimg.com/news/pics/18462/18462117.jpg"  picSize:CGSizeMake(200, 200)];
 //    hud.layer.cornerRadius = 100;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(a:) name:DWAnimationPlayStartNotification object:nil];
 }
 
-
+-(void)a:(NSNotification *)notice
+{
+    DWAnimation * animtion = [notice.object valueForKey:@"animation"];
+    NSLog(@"%@",animtion.animationKey);
+}
 
 -(void)btnAction
 {
