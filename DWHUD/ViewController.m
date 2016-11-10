@@ -21,6 +21,7 @@
 #import "DWPictureHUD.h"
 #import "UIImageView+DWGifTool.h"
 #import "DWBaseAlert.h"
+#import "DWDefaultAlert.h"
 @interface ViewController ()
 
 @property (nonatomic ,strong) DWHUDTickIndicator * hud;
@@ -158,20 +159,32 @@
     
 //    hud.verticalOffset = 100;
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        DWMessageHUD * hud = [DWMessageHUD showMessage:@"我是一个好宝宝" hideDelay:5];
-        DWIndicatorHUD * hud = [DWIndicatorHUD showExclamationWithMessage:@"我是一个好宝宝"];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [hud hide];
-        });
-//        hud.textLabelOffset = 100;
-    });
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+////        DWMessageHUD * hud = [DWMessageHUD showMessage:@"我是一个好宝宝" hideDelay:5];
+//        DWIndicatorHUD * hud = [DWIndicatorHUD showExclamationWithMessage:@"我是一个好宝宝"];
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [hud hide];
+//        });
+////        hud.textLabelOffset = 100;
+//    });
 //    DWPictureHUD * hud = [DWPictureHUD showPicture:@"http://img1.gtimg.com/news/pics/18462/18462117.jpg"  picSize:CGSizeMake(200, 200)];
 //    hud.layer.cornerRadius = 100;
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(a:) name:DWAnimationPlayStartNotification object:nil];
-    [[DWBaseAlert new] addBtnWithTitle:@"111" action:^(DWBaseAlert * ani) {
-        NSLog(@"333");
-    } indentifier:@"222"];
+    
+    DWDefaultAlert * alert = [[DWDefaultAlert alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+    [self.view addSubview:alert];
+    alert.backgroundColor = [UIColor whiteColor];
+    UIButton * btn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    [btn setTitle:@"确定" forState:(UIControlStateNormal)];
+    [btn setTitleColor:[UIColor yellowColor] forState:(UIControlStateNormal)];
+//    [btn setBackgroundColor:[UIColor redColor]];
+    [alert addButton:btn withKey:@"确定"];
+    UIButton * btn2 = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    [btn2 setTitle:@"取消" forState:(UIControlStateNormal)];
+    [btn2 setTitleColor:[UIColor yellowColor] forState:(UIControlStateNormal)];
+//    [btn2 setBackgroundColor:[UIColor redColor]];
+    [alert addButton:btn2 withKey:@"取消"];
+    [alert show];
 }
 
 -(void)a:(NSNotification *)notice

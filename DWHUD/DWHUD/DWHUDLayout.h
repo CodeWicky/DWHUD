@@ -14,7 +14,7 @@
  canvas对象为以本抽象类生成的DWHUDCanvas实例，用于在layoutDWHUDComponents中进行布局
  */
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 @interface DWHUDLayout : NSObject
 @property (nonatomic ,weak) id canvas;
 -(void)layoutDWHUDComponents;

@@ -16,11 +16,14 @@
 
 @implementation DWBaseAlert
 
--(void)addBtnWithTitle:(UIButton *)title action:(void (^)(DWBaseAlert *))action indentifier:(NSString *)indentifier
+-(void)addButton:(UIButton *)btn withKey:(NSString *)key
 {
-    [self.btnDic setValue:@{@"title":title,@"action":[NSValue valueWithPointer:(__bridge const void * _Nullable)(action)]} forKey:indentifier];
-    void (^bl) (DWBaseAlert *) = [self.btnDic[indentifier][@"action"] pointerValue];
-    bl(self);
+    [self.btnDic setValue:btn forKey:key];
+}
+
+-(UIButton *)buttonForKey:(NSString *)key
+{
+    return self.btnDic[key];
 }
 
 -(NSMutableDictionary *)btnDic
@@ -30,5 +33,7 @@
     }
     return _btnDic;
 }
+
+
 
 @end

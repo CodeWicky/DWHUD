@@ -22,6 +22,8 @@
 		9B4A6D251DD48532006E3A9F /* DWBaseAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A6D241DD48532006E3A9F /* DWBaseAlert.m */; };
 		9B568BEF1DBE63DF0070D361 /* UIBezierPath+DWPathUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B568BEE1DBE63DF0070D361 /* UIBezierPath+DWPathUtils.m */; };
 		9B568BF91DBFB9690070D361 /* UIImageView+DWGifTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B568BF81DBFB9690070D361 /* UIImageView+DWGifTool.m */; };
+		9B5A85BE1DD4CD0700CB6693 /* DWDefaultAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5A85BD1DD4CD0700CB6693 /* DWDefaultAlert.m */; };
+		9B5A85C11DD4E05800CB6693 /* DWDefaultAlertLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5A85C01DD4E05800CB6693 /* DWDefaultAlertLayout.m */; };
 		9B9812D51DCA198F007D41A7 /* CALayer+DWAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9812C61DCA198F007D41A7 /* CALayer+DWAnimation.m */; };
 		9B9812D61DCA198F007D41A7 /* DWAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9812C81DCA198F007D41A7 /* DWAnimation.m */; };
 		9B9812D71DCA198F007D41A7 /* DWAnimationAbstraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9812CA1DCA198F007D41A7 /* DWAnimationAbstraction.m */; };
@@ -67,6 +69,10 @@
 		9B568BEE1DBE63DF0070D361 /* UIBezierPath+DWPathUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+DWPathUtils.m"; sourceTree = "<group>"; };
 		9B568BF71DBFB9690070D361 /* UIImageView+DWGifTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+DWGifTool.h"; sourceTree = "<group>"; };
 		9B568BF81DBFB9690070D361 /* UIImageView+DWGifTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+DWGifTool.m"; sourceTree = "<group>"; };
+		9B5A85BC1DD4CD0700CB6693 /* DWDefaultAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWDefaultAlert.h; sourceTree = "<group>"; };
+		9B5A85BD1DD4CD0700CB6693 /* DWDefaultAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWDefaultAlert.m; sourceTree = "<group>"; };
+		9B5A85BF1DD4E05800CB6693 /* DWDefaultAlertLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWDefaultAlertLayout.h; sourceTree = "<group>"; };
+		9B5A85C01DD4E05800CB6693 /* DWDefaultAlertLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWDefaultAlertLayout.m; sourceTree = "<group>"; };
 		9B9812C51DCA198F007D41A7 /* CALayer+DWAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+DWAnimation.h"; sourceTree = "<group>"; };
 		9B9812C61DCA198F007D41A7 /* CALayer+DWAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+DWAnimation.m"; sourceTree = "<group>"; };
 		9B9812C71DCA198F007D41A7 /* DWAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWAnimation.h; sourceTree = "<group>"; };
@@ -178,6 +184,10 @@
 				9B2AF2EB1DD3634900308C33 /* DWHUDAnimationManager.m */,
 				9B4A6D231DD48532006E3A9F /* DWBaseAlert.h */,
 				9B4A6D241DD48532006E3A9F /* DWBaseAlert.m */,
+				9B5A85BF1DD4E05800CB6693 /* DWDefaultAlertLayout.h */,
+				9B5A85C01DD4E05800CB6693 /* DWDefaultAlertLayout.m */,
+				9B5A85BC1DD4CD0700CB6693 /* DWDefaultAlert.h */,
+				9B5A85BD1DD4CD0700CB6693 /* DWDefaultAlert.m */,
 			);
 			path = DWHUD;
 			sourceTree = "<group>";
@@ -326,7 +336,9 @@
 				9B45EADA1DC4B2B800201521 /* UIColor+DWColorUtils.m in Sources */,
 				9B568BEF1DBE63DF0070D361 /* UIBezierPath+DWPathUtils.m in Sources */,
 				9B4A6D251DD48532006E3A9F /* DWBaseAlert.m in Sources */,
+				9B5A85C11DD4E05800CB6693 /* DWDefaultAlertLayout.m in Sources */,
 				9B20D7751DAA3C7200AC2848 /* main.m in Sources */,
+				9B5A85BE1DD4CD0700CB6693 /* DWDefaultAlert.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

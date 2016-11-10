@@ -18,6 +18,8 @@
 
 -(void)layoutDWHUDComponents
 {
+    [super layoutDWHUDComponents];
+    
     DWMessageHUD * hud = self.canvas;
     
     CGPoint center = CGPointMake(hud.frame.size.width / 2.0, hud.frame.size.height / 2.0);

@@ -13,6 +13,15 @@
 -(void)layoutDWHUDComponents
 {
     DWLog(@"you should override this method to place your components");
+    if ([self.canvas isKindOfClass:[UIView class]]) {
+        UIView * canvas = self.canvas;
+        [canvas.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    }
+    else if ([self.canvas isKindOfClass:[CALayer class]])
+    {
+        CALayer * layer = self.canvas;
+        [layer.sublayers makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
+    }
 }
 
 -(void)willShowTheHUD

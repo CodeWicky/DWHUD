@@ -21,6 +21,7 @@
 
 -(void)layoutDWHUDComponents
 {
+    [super layoutDWHUDComponents];
     DWPictureHUD * hud = self.canvas;
     CGFloat width = hud.gifView.bounds.size.width;
     if (hud.textLabel) {

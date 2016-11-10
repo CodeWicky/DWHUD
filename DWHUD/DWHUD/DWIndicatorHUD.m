@@ -19,6 +19,8 @@
 
 -(void)layoutDWHUDComponents
 {
+    [super layoutDWHUDComponents];
+    
     DWIndicatorHUD * hud = self.canvas;
     CGFloat width = hud.bounds.size.width;
     hud.indicator.position = CGPointMake(width / 2.0, 20 + MARGIN);

@@ -9,5 +9,7 @@
 #import "DWHUDCanvas.h"
 
 @interface DWBaseAlert : DWHUDCanvas
--(void)addBtnWithTitle:(NSString *)title action:(void(^)(DWBaseAlert *))action indentifier:(NSString *)indentifier;
+@property (nonatomic ,strong) NSMutableArray * btnKeysArr;
+-(void)addButton:(UIButton *)btn withKey:(NSString *)key;
+-(UIButton *)buttonForKey:(NSString *)key;
 @end
