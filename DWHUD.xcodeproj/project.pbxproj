@@ -19,6 +19,7 @@
 		9B20D7EF1DAE958B00AC2848 /* DWHUDTickIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B20D7EE1DAE958B00AC2848 /* DWHUDTickIndicator.m */; };
 		9B2AF2EC1DD3634900308C33 /* DWHUDAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AF2EB1DD3634900308C33 /* DWHUDAnimationManager.m */; };
 		9B45EADA1DC4B2B800201521 /* UIColor+DWColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B45EAD91DC4B2B800201521 /* UIColor+DWColorUtils.m */; };
+		9B4A6D251DD48532006E3A9F /* DWBaseAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A6D241DD48532006E3A9F /* DWBaseAlert.m */; };
 		9B568BEF1DBE63DF0070D361 /* UIBezierPath+DWPathUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B568BEE1DBE63DF0070D361 /* UIBezierPath+DWPathUtils.m */; };
 		9B568BF91DBFB9690070D361 /* UIImageView+DWGifTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B568BF81DBFB9690070D361 /* UIImageView+DWGifTool.m */; };
 		9B9812D51DCA198F007D41A7 /* CALayer+DWAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9812C61DCA198F007D41A7 /* CALayer+DWAnimation.m */; };
@@ -60,6 +61,8 @@
 		9B45EAD91DC4B2B800201521 /* UIColor+DWColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+DWColorUtils.m"; sourceTree = "<group>"; };
 		9B45EADC1DC4B8B300201521 /* DWHUDHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWHUDHeader.h; sourceTree = "<group>"; };
 		9B45EADF1DC4B92000201521 /* DWHUDConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWHUDConstant.h; sourceTree = "<group>"; };
+		9B4A6D231DD48532006E3A9F /* DWBaseAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWBaseAlert.h; sourceTree = "<group>"; };
+		9B4A6D241DD48532006E3A9F /* DWBaseAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWBaseAlert.m; sourceTree = "<group>"; };
 		9B568BED1DBE63DF0070D361 /* UIBezierPath+DWPathUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+DWPathUtils.h"; sourceTree = "<group>"; };
 		9B568BEE1DBE63DF0070D361 /* UIBezierPath+DWPathUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+DWPathUtils.m"; sourceTree = "<group>"; };
 		9B568BF71DBFB9690070D361 /* UIImageView+DWGifTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+DWGifTool.h"; sourceTree = "<group>"; };
@@ -173,6 +176,8 @@
 				9B45EADF1DC4B92000201521 /* DWHUDConstant.h */,
 				9B2AF2EA1DD3634900308C33 /* DWHUDAnimationManager.h */,
 				9B2AF2EB1DD3634900308C33 /* DWHUDAnimationManager.m */,
+				9B4A6D231DD48532006E3A9F /* DWBaseAlert.h */,
+				9B4A6D241DD48532006E3A9F /* DWBaseAlert.m */,
 			);
 			path = DWHUD;
 			sourceTree = "<group>";
@@ -320,6 +325,7 @@
 				9B20D7781DAA3C7200AC2848 /* AppDelegate.m in Sources */,
 				9B45EADA1DC4B2B800201521 /* UIColor+DWColorUtils.m in Sources */,
 				9B568BEF1DBE63DF0070D361 /* UIBezierPath+DWPathUtils.m in Sources */,
+				9B4A6D251DD48532006E3A9F /* DWBaseAlert.m in Sources */,
 				9B20D7751DAA3C7200AC2848 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

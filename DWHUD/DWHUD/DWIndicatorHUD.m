@@ -124,18 +124,20 @@
 
 -(void)setTwoAnimationForHUD:(DWIndicatorHUD *)hud
 {
-    if (hud.showAnimation) {
-        __weak typeof(hud) weakHUD = hud;
-        hud.showAnimation.completion = ^(DWAnimation * ani){
-            if (weakHUD.compAnimation) {
-                [weakHUD.compAnimation start];
+    if (self.showIndicatorAnimation) {
+        if (hud.showAnimation) {
+            __weak typeof(hud) weakHUD = hud;
+            hud.showAnimation.completion = ^(DWAnimation * ani){
+                if (weakHUD.compAnimation) {
+                    [weakHUD.compAnimation start];
+                }
+            };
+        }
+        else
+        {
+            if (hud.compAnimation) {
+                [hud.compAnimation start];
             }
-        };
-    }
-    else
-    {
-        if (hud.compAnimation) {
-            [hud.compAnimation start];
         }
     }
 }
@@ -166,8 +168,9 @@
     self = [super initBasicHUDWithFrame:indicatorFrm layout:layout view:view];
     if (self) {
         self.compAnimation = animation;
-        self.showType = DWHUDAnimatoinTypeFallIn;
-        self.hideType = DWHUDAnimatoinTypeFallOut;
+        self.showAnimationType = DWHUDAnimatoinTypeZoomIn;
+        self.hideAnimationType = DWHUDAnimatoinTypeZoomOut;
+        self.showIndicatorAnimation = YES;
         self.indicator = indicator;
         if (comp) {
             self.textLabel = comp.component;
@@ -198,29 +201,19 @@
     }
 }
 
--(void)setShowType:(DWHUDAnimatoinType)showType
+-(void)setShowAnimationType:(DWHUDAnimatoinType)showAnimationType
 {
-    if (showType == DWHUDAnimatoinTypeFallIn) {
-        _showType = showType;
-        self.showAnimation = [DWHUDAnimationManager createFallInAnimationWithView:self];
-    }
-    else if (showType == DWHUDAnimatoinTypeNone)
-    {
-        _showType = showType;
-        self.showAnimation = nil;
+    if (showAnimationType & (DWHUDAnimatoinTypeFallIn | DWHUDAnimatoinTypeFlyIn | DWHUDAnimatoinTypeZoomIn | DWHUDAnimatoinTypeNone)) {
+        _showAnimationType = showAnimationType;
+        self.showAnimation = [DWHUDAnimationManager createAnimationWithView:self type:showAnimationType];
     }
 }
 
--(void)setHideType:(DWHUDAnimatoinType)hideType
+-(void)setHideAnimationType:(DWHUDAnimatoinType)hideAnimationType
 {
-    if (hideType == DWHUDAnimatoinTypeFallOut) {
-        _hideType = hideType;
-        self.hideAnimation = [DWHUDAnimationManager createFallOutAnimationWithView:self];
-    }
-    else if (hideType == DWHUDAnimatoinTypeNone)
-    {
-        _hideType = hideType;
-        self.hideAnimation = nil;
+    if (hideAnimationType & (DWHUDAnimatoinTypeFallOut | DWHUDAnimatoinTypeFlyOut | DWHUDAnimatoinTypeZoomOut | DWHUDAnimatoinTypeNone)) {
+        _hideAnimationType = hideAnimationType;
+        self.hideAnimation = [DWHUDAnimationManager createAnimationWithView:self type:hideAnimationType];
     }
 }
 @end

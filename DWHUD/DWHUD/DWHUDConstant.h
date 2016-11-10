@@ -9,10 +9,14 @@
 #ifndef DWHUDConstant_h
 #define DWHUDConstant_h
 
-typedef NS_ENUM(NSInteger , DWHUDAnimatoinType) {///DWHUD动画形式
-    DWHUDAnimatoinTypeFallIn = 0,///坠入
-    DWHUDAnimatoinTypeFallOut,///落出
-    DWHUDAnimatoinTypeNone///取消动画
+typedef NS_OPTIONS(NSInteger , DWHUDAnimatoinType) {///DWHUD动画形式
+    DWHUDAnimatoinTypeNone = 0,///取消动画
+    DWHUDAnimatoinTypeFallIn = 1 << 0,///坠入
+    DWHUDAnimatoinTypeFallOut = 1 << 1,///落出
+    DWHUDAnimatoinTypeFlyIn = 1 << 2,///飞入
+    DWHUDAnimatoinTypeFlyOut = 1 << 3,///飞出
+    DWHUDAnimatoinTypeZoomIn = 1 << 4,///缩放进入
+    DWHUDAnimatoinTypeZoomOut = 1 << 5,///缩放
 };
 
 //宏输出函数

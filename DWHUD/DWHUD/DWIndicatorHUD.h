@@ -26,14 +26,19 @@
 @property (nonatomic ,assign) CGFloat textLabelOffset;
 
 /**
+ 是否展示指示器动画，默认为YES
+ */
+@property (nonatomic ,assign) BOOL showIndicatorAnimation;
+
+/**
  展示动画种类
  */
-@property (nonatomic ,assign) DWHUDAnimatoinType showType;
+@property (nonatomic ,assign) DWHUDAnimatoinType showAnimationType;
 
 /**
  隐藏动画种类
  */
-@property (nonatomic ,assign) DWHUDAnimatoinType hideType;
+@property (nonatomic ,assign) DWHUDAnimatoinType hideAnimationType;
 
 /**
  展示完成信息

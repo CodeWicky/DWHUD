@@ -20,6 +20,7 @@
 #import "DWIndicatorHUD.h"
 #import "DWPictureHUD.h"
 #import "UIImageView+DWGifTool.h"
+#import "DWBaseAlert.h"
 @interface ViewController ()
 
 @property (nonatomic ,strong) DWHUDTickIndicator * hud;
@@ -167,7 +168,10 @@
     });
 //    DWPictureHUD * hud = [DWPictureHUD showPicture:@"http://img1.gtimg.com/news/pics/18462/18462117.jpg"  picSize:CGSizeMake(200, 200)];
 //    hud.layer.cornerRadius = 100;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(a:) name:DWAnimationPlayStartNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(a:) name:DWAnimationPlayStartNotification object:nil];
+    [[DWBaseAlert new] addBtnWithTitle:@"111" action:^(DWBaseAlert * ani) {
+        NSLog(@"333");
+    } indentifier:@"222"];
 }
 
 -(void)a:(NSNotification *)notice
