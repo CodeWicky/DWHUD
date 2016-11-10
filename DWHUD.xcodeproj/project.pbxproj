@@ -156,32 +156,17 @@
 		9B20D78A1DAA3C8100AC2848 /* DWHUD */ = {
 			isa = PBXGroup;
 			children = (
-				9B9812C41DCA198F007D41A7 /* DWAnimation */,
-				9B45EAD71DC4B2B800201521 /* DWColorUtils */,
-				9B568BF61DBFB94D0070D361 /* DWGifTool */,
-				9B568BEC1DBE63DF0070D361 /* DWPathUtils */,
-				9B20D78B1DAA409300AC2848 /* DWHUDRingIndicator.h */,
-				9B20D78C1DAA409300AC2848 /* DWHUDRingIndicator.m */,
-				9B20D79F1DAB957C00AC2848 /* DWHUDWormIndicator.h */,
-				9B20D7A01DAB957C00AC2848 /* DWHUDWormIndicator.m */,
-				9B20D7ED1DAE958B00AC2848 /* DWHUDTickIndicator.h */,
-				9B20D7EE1DAE958B00AC2848 /* DWHUDTickIndicator.m */,
-				9BABDCD11DB7A323001687E0 /* DWHUDComponentMaker.h */,
-				9BABDCD21DB7A323001687E0 /* DWHUDComponentMaker.m */,
-				9B20D7E41DAE39BF00AC2848 /* DWHUDLayout.h */,
-				9B20D7E51DAE39BF00AC2848 /* DWHUDLayout.m */,
-				9BFA1C281DAF32D700ACFDCE /* DWHUDCanvas.h */,
-				9BFA1C291DAF32D700ACFDCE /* DWHUDCanvas.m */,
+				9B5A85C71DD4E57000CB6693 /* Constant */,
+				9B5A85C51DD4E4E100CB6693 /* ToolsHelper */,
+				9B5A85C31DD4E36700CB6693 /* Indicator */,
+				9B5A85C21DD4E2B400CB6693 /* OtherHelper */,
+				9B5A85C41DD4E43900CB6693 /* Abstraction */,
 				9BE24D8A1DD21AAB0067B337 /* DWPictureHUD.h */,
 				9BE24D8B1DD21AAB0067B337 /* DWPictureHUD.m */,
 				9BF08D391DC7913F009B1E15 /* DWMessageHUD.h */,
 				9BF08D3A1DC7913F009B1E15 /* DWMessageHUD.m */,
 				9B9812DF1DCA449F007D41A7 /* DWIndicatorHUD.h */,
 				9B9812E01DCA449F007D41A7 /* DWIndicatorHUD.m */,
-				9B45EADC1DC4B8B300201521 /* DWHUDHeader.h */,
-				9B45EADF1DC4B92000201521 /* DWHUDConstant.h */,
-				9B2AF2EA1DD3634900308C33 /* DWHUDAnimationManager.h */,
-				9B2AF2EB1DD3634900308C33 /* DWHUDAnimationManager.m */,
 				9B4A6D231DD48532006E3A9F /* DWBaseAlert.h */,
 				9B4A6D241DD48532006E3A9F /* DWBaseAlert.m */,
 				9B5A85BF1DD4E05800CB6693 /* DWDefaultAlertLayout.h */,
@@ -217,6 +202,62 @@
 				9B568BF81DBFB9690070D361 /* UIImageView+DWGifTool.m */,
 			);
 			path = DWGifTool;
+			sourceTree = "<group>";
+		};
+		9B5A85C21DD4E2B400CB6693 /* OtherHelper */ = {
+			isa = PBXGroup;
+			children = (
+				9B9812C41DCA198F007D41A7 /* DWAnimation */,
+				9B45EAD71DC4B2B800201521 /* DWColorUtils */,
+				9B568BF61DBFB94D0070D361 /* DWGifTool */,
+				9B568BEC1DBE63DF0070D361 /* DWPathUtils */,
+			);
+			path = OtherHelper;
+			sourceTree = "<group>";
+		};
+		9B5A85C31DD4E36700CB6693 /* Indicator */ = {
+			isa = PBXGroup;
+			children = (
+				9B20D78B1DAA409300AC2848 /* DWHUDRingIndicator.h */,
+				9B20D78C1DAA409300AC2848 /* DWHUDRingIndicator.m */,
+				9B20D79F1DAB957C00AC2848 /* DWHUDWormIndicator.h */,
+				9B20D7A01DAB957C00AC2848 /* DWHUDWormIndicator.m */,
+				9B20D7ED1DAE958B00AC2848 /* DWHUDTickIndicator.h */,
+				9B20D7EE1DAE958B00AC2848 /* DWHUDTickIndicator.m */,
+			);
+			path = Indicator;
+			sourceTree = "<group>";
+		};
+		9B5A85C41DD4E43900CB6693 /* Abstraction */ = {
+			isa = PBXGroup;
+			children = (
+				9B20D7E41DAE39BF00AC2848 /* DWHUDLayout.h */,
+				9B20D7E51DAE39BF00AC2848 /* DWHUDLayout.m */,
+				9BFA1C281DAF32D700ACFDCE /* DWHUDCanvas.h */,
+				9BFA1C291DAF32D700ACFDCE /* DWHUDCanvas.m */,
+			);
+			path = Abstraction;
+			sourceTree = "<group>";
+		};
+		9B5A85C51DD4E4E100CB6693 /* ToolsHelper */ = {
+			isa = PBXGroup;
+			children = (
+				9BABDCD11DB7A323001687E0 /* DWHUDComponentMaker.h */,
+				9BABDCD21DB7A323001687E0 /* DWHUDComponentMaker.m */,
+				9B2AF2EA1DD3634900308C33 /* DWHUDAnimationManager.h */,
+				9B2AF2EB1DD3634900308C33 /* DWHUDAnimationManager.m */,
+			);
+			path = ToolsHelper;
+			sourceTree = "<group>";
+		};
+		9B5A85C71DD4E57000CB6693 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				9B45EADC1DC4B8B300201521 /* DWHUDHeader.h */,
+				9B45EADF1DC4B92000201521 /* DWHUDConstant.h */,
+			);
+			name = Constant;
+			path = constant;
 			sourceTree = "<group>";
 		};
 		9B9812C41DCA198F007D41A7 /* DWAnimation */ = {
