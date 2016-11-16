@@ -6,6 +6,16 @@
 //  Copyright © 2016年 Wicky. All rights reserved.
 //
 
+/**
+ DWHUDCanvas
+ 
+ DWHUD的基类
+ 提供公有属性及方法，本类为抽象类
+ 
+ version 1.0.0
+ 提供基本属性，公有方法
+ */
+
 #import <UIKit/UIKit.h>
 #import "DWHUDLayout.h"
 #import "DWHUDConstant.h"

@@ -6,6 +6,16 @@
 //  Copyright © 2016年 Wicky. All rights reserved.
 //
 
+/**
+ DWBaseAlert
+ 
+ 基本alert基类
+ 提供基本型alert的公有方法及属性
+ 
+ version 1.0.0
+ 提供基本型alert的公有方法及属性
+ */
+
 #import "DWHUDCanvas.h"
 
 @interface DWBaseAlert : DWHUDCanvas

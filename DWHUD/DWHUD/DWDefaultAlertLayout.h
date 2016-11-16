@@ -6,6 +6,16 @@
 //  Copyright © 2016年 Wicky. All rights reserved.
 //
 
+/**
+ DWDefaultAlertLayout
+ 
+ 基本型alert的布局基类
+ 提供基本型alert的布局公有属性
+ 
+ version 1.0.0
+ 提供基本型alert的布局公有属性
+ */
+
 #import "DWHUDLayout.h"
 
 @interface DWDefaultAlertLayout : DWHUDLayout

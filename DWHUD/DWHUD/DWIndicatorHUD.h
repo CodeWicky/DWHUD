@@ -6,6 +6,16 @@
 //  Copyright © 2016年 Wicky. All rights reserved.
 //
 
+/**
+ DWIndicatorHUD
+ 
+ 标准指示器HUD
+ 提供标准指示器HUD生成api
+ 
+ version 1.0.0
+ 提供标准指示器HUD生成api
+ */
+
 #import "DWHUDCanvas.h"
 @interface DWIndicatorHUD : DWHUDCanvas
 

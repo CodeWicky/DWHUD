@@ -6,6 +6,16 @@
 //  Copyright © 2016年 Wicky. All rights reserved.
 //
 
+/**
+ DWDefaultAlert
+ 
+ 标准alert类
+ 提供生成标准alert的api
+ 
+ version 1.0.0
+ 提供生成标准alert的api
+ */
+
 #import "DWBaseAlert.h"
 
 @class DWDefaultAlert;

@@ -6,6 +6,16 @@
 //  Copyright © 2016年 Wicky. All rights reserved.
 //
 
+/**
+ DWMessageHUD
+ 
+ 标准toast类
+ 提供标准TOASTapi
+ 
+ version 1.0.0
+ 提供标准TOASTapi
+ */
+
 #import "DWHUDCanvas.h"
 
 @interface DWMessageHUD : DWHUDCanvas
