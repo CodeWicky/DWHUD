@@ -17,6 +17,13 @@ typedef NS_OPTIONS(NSInteger , DWHUDAnimatoinType) {///DWHUD动画形式
     DWHUDAnimatoinTypeFlyOut = 1 << 3,///飞出
     DWHUDAnimatoinTypeZoomIn = 1 << 4,///缩放进入
     DWHUDAnimatoinTypeZoomOut = 1 << 5,///缩放
+    DWHUDAnimatoinTypeRotateIn = 1 << 6,///旋入
+    DWHUDAnimatoinTypeRotateOut = 1 << 7,///旋出
+    DWHUDAnimatoinTypeArcIn = 1 << 8,///弧线飞入
+    DWHUDAnimatoinTypeArcOut = 1 << 9,///弧线飞出
+    ///注意，以下动画会改变锚点
+    DWHUDAnimatoinTypeLiftUp = 1 << 10,///提起
+    DWHUDAnimatoinTypePutDown = 1 << 11,///放下
 };
 
 //宏输出函数
@@ -38,7 +45,5 @@ typedef NS_OPTIONS(NSInteger , DWHUDAnimatoinType) {///DWHUD动画形式
 #define APPWindow [[[UIApplication sharedApplication] delegate] window]
 
 #define APPRootView APPWindow.rootViewController.view
-
-
 
 #endif /* DWHUDConstant_h */

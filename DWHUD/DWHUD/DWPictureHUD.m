@@ -31,9 +31,7 @@
         CGRect frame = hud.textLabel.frame;
         frame.origin = CGPointMake(hud.bounds.size.width / 2.0 - hud.textLabel.bounds.size.width / 2.0, hud.gifView.bounds.size.height + MARGIN + (hud.textLabelOffset?hud.textLabelOffset:MARGIN));
         hud.textLabel.frame = frame;
-        [hud addSubview:hud.textLabel];
     }
-    [hud addSubview:hud.gifView];
 }
 
 @end
@@ -81,10 +79,12 @@
         
         self.gifView.layer.cornerRadius = 5;
         self.gifView.clipsToBounds = YES;
+        [self addSubview:self.gifView];
         if (comp) {
             self.textLabel = comp.component;
             self.textLabel.textColor = [UIColor whiteColor];
             self.textLabel.backgroundColor = [UIColor clearColor];
+            [self addSubview:self.textLabel];
         }
     }
     return self;

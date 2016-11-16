@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DWHUDLayout.h"
+#import "DWHUDConstant.h"
 @class DWAnimation;
 @interface DWHUDCanvas : UIView
 /**
@@ -51,6 +52,11 @@
 @property (nonatomic ,strong) DWAnimation * showAnimation;
 
 /**
+ 展示动画种类
+ */
+@property (nonatomic ,assign) DWHUDAnimatoinType showAnimationType;
+
+/**
  完成展示回调
  */
 @property (nonatomic ,copy) void(^didShowBlock) (DWHUDCanvas *);
@@ -59,6 +65,11 @@
  隐藏动画
  */
 @property (nonatomic ,strong) DWAnimation * hideAnimation;
+
+/**
+ 隐藏动画种类
+ */
+@property (nonatomic ,assign) DWHUDAnimatoinType hideAnimationType;
 
 /**
  完成隐藏回调

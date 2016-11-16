@@ -26,7 +26,7 @@
     if (hud.verticalOffset) {
         hud.center = CGPointMake(hud.superview.bounds.size.width / 2.0, hud.superview.bounds.size.height / 2.0 + hud.verticalOffset);
     }
-    [hud addSubview:hud.textLabel];
+//    [hud addSubview:hud.textLabel];
     hud.textLabel.center = center;
 }
 
@@ -49,7 +49,7 @@
     if (self) {
         self.textLabel = maker.component;
         self.textLabel.textColor = [UIColor whiteColor];
-        
+        [self addSubview:self.textLabel];
         self.showAnimation = CreateShowAnimation(self);
         self.hideAnimation = CreateHideAniamtion(self);
         
