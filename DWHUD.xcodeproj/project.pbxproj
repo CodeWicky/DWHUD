@@ -20,6 +20,7 @@
 		9B2AF2EC1DD3634900308C33 /* DWHUDAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AF2EB1DD3634900308C33 /* DWHUDAnimationManager.m */; };
 		9B45EADA1DC4B2B800201521 /* UIColor+DWColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B45EAD91DC4B2B800201521 /* UIColor+DWColorUtils.m */; };
 		9B4A6D251DD48532006E3A9F /* DWBaseAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A6D241DD48532006E3A9F /* DWBaseAlert.m */; };
+		9B4A6D271DD598BA006E3A9F /* aaa.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9B4A6D261DD598BA006E3A9F /* aaa.jpg */; };
 		9B568BEF1DBE63DF0070D361 /* UIBezierPath+DWPathUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B568BEE1DBE63DF0070D361 /* UIBezierPath+DWPathUtils.m */; };
 		9B568BF91DBFB9690070D361 /* UIImageView+DWGifTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B568BF81DBFB9690070D361 /* UIImageView+DWGifTool.m */; };
 		9B5A85BE1DD4CD0700CB6693 /* DWDefaultAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5A85BD1DD4CD0700CB6693 /* DWDefaultAlert.m */; };
@@ -65,6 +66,7 @@
 		9B45EADF1DC4B92000201521 /* DWHUDConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWHUDConstant.h; sourceTree = "<group>"; };
 		9B4A6D231DD48532006E3A9F /* DWBaseAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWBaseAlert.h; sourceTree = "<group>"; };
 		9B4A6D241DD48532006E3A9F /* DWBaseAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWBaseAlert.m; sourceTree = "<group>"; };
+		9B4A6D261DD598BA006E3A9F /* aaa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = aaa.jpg; sourceTree = "<group>"; };
 		9B568BED1DBE63DF0070D361 /* UIBezierPath+DWPathUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+DWPathUtils.h"; sourceTree = "<group>"; };
 		9B568BEE1DBE63DF0070D361 /* UIBezierPath+DWPathUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+DWPathUtils.m"; sourceTree = "<group>"; };
 		9B568BF71DBFB9690070D361 /* UIImageView+DWGifTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+DWGifTool.h"; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 		9B20D7721DAA3C7200AC2848 /* DWHUD */ = {
 			isa = PBXGroup;
 			children = (
+				9B4A6D261DD598BA006E3A9F /* aaa.jpg */,
 				9B20D7761DAA3C7200AC2848 /* AppDelegate.h */,
 				9B20D7771DAA3C7200AC2848 /* AppDelegate.m */,
 				9B20D7791DAA3C7200AC2848 /* ViewController.h */,
@@ -341,6 +344,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B4A6D271DD598BA006E3A9F /* aaa.jpg in Resources */,
 				9B20D7831DAA3C7200AC2848 /* LaunchScreen.storyboard in Resources */,
 				9B20D7801DAA3C7200AC2848 /* Assets.xcassets in Resources */,
 				9B20D77E1DAA3C7200AC2848 /* Main.storyboard in Resources */,

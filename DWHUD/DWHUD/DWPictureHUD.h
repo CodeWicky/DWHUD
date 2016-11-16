@@ -6,6 +6,16 @@
 //  Copyright © 2016年 Wicky. All rights reserved.
 //
 
+/**
+ DWPictureHUD
+ 
+ 标准图片HUD
+ 提供标准图片HUDapi
+ 
+ version 1.0.0
+ 提供标准图片HUDapi
+ */
+
 #import "DWHUDCanvas.h"
 
 @interface DWPictureHUD : DWHUDCanvas

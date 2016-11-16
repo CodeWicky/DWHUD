@@ -6,8 +6,19 @@
 //  Copyright © 2016年 Wicky. All rights reserved.
 //
 
+/**
+ DWHUDCanvas
+ 
+ DWHUD的基类
+ 提供公有属性及方法，本类为抽象类
+ 
+ version 1.0.0
+ 提供基本属性，公有方法
+ */
+
 #import <UIKit/UIKit.h>
 #import "DWHUDLayout.h"
+#import "DWHUDConstant.h"
 @class DWAnimation;
 @interface DWHUDCanvas : UIView
 /**
@@ -51,6 +62,11 @@
 @property (nonatomic ,strong) DWAnimation * showAnimation;
 
 /**
+ 展示动画种类
+ */
+@property (nonatomic ,assign) DWHUDAnimatoinType showAnimationType;
+
+/**
  完成展示回调
  */
 @property (nonatomic ,copy) void(^didShowBlock) (DWHUDCanvas *);
@@ -59,6 +75,11 @@
  隐藏动画
  */
 @property (nonatomic ,strong) DWAnimation * hideAnimation;
+
+/**
+ 隐藏动画种类
+ */
+@property (nonatomic ,assign) DWHUDAnimatoinType hideAnimationType;
 
 /**
  完成隐藏回调

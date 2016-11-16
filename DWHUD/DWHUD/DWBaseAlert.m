@@ -26,6 +26,11 @@
     return self.btnDic[key];
 }
 
+-(void)removeBtnForKey:(NSString *)key
+{
+    [self.btnDic removeObjectForKey:key];
+}
+
 -(NSMutableDictionary *)btnDic
 {
     if (!_btnDic) {

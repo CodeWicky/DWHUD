@@ -6,6 +6,16 @@
 //  Copyright © 2016年 Wicky. All rights reserved.
 //
 
+/**
+ DWHUDRingIndicator
+ 
+ 几款预置的环状指示器
+ 快捷生成简单指示器
+ 
+ version 1.0.0
+ 添加几款基本环状指示器
+ */
+
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger ,DWHUDRingIndicatorActionType) {

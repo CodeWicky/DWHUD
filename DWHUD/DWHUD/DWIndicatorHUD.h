@@ -6,8 +6,17 @@
 //  Copyright © 2016年 Wicky. All rights reserved.
 //
 
+/**
+ DWIndicatorHUD
+ 
+ 标准指示器HUD
+ 提供标准指示器HUD生成api
+ 
+ version 1.0.0
+ 提供标准指示器HUD生成api
+ */
+
 #import "DWHUDCanvas.h"
-#import "DWHUDConstant.h"
 @interface DWIndicatorHUD : DWHUDCanvas
 
 /**
@@ -29,16 +38,6 @@
  是否展示指示器动画，默认为YES
  */
 @property (nonatomic ,assign) BOOL showIndicatorAnimation;
-
-/**
- 展示动画种类
- */
-@property (nonatomic ,assign) DWHUDAnimatoinType showAnimationType;
-
-/**
- 隐藏动画种类
- */
-@property (nonatomic ,assign) DWHUDAnimatoinType hideAnimationType;
 
 /**
  展示完成信息
@@ -65,6 +64,15 @@
 +(instancetype)showExclamationWithMessage:(NSString *)msg toView:(UIView *)view hideOnTouchInside:(BOOL)hideOnTouchInside;
 
 -(instancetype)initExclamationWithMessage:(NSString *)msg toView:(UIView *)view hideOnTouchInside:(BOOL)hideOnTouchInside;
+
+/**
+ 展示加载信息
+ */
++(instancetype)showLoadingWithMessage:(NSString *)msg;
+
++(instancetype)showLoadingWithMessage:(NSString *)msg toView:(UIView *)view hideOnTouchInside:(BOOL)hideOnTouchInside;
+
+-(instancetype)initLoadingWithMessage:(NSString *)msg toView:(UIView *)view hideOnTouchInside:(BOOL)hideOnTouchInside;
 
 /**
  展示自定义指示器的信息

@@ -11,6 +11,9 @@
  
  生成DWHUD的组件的工厂类
  通过快速生成部分组件后布置在DWHUDCanvas实现自定义HUD
+ 
+ version 1.0.0
+ 定义基本组件快捷生成
  */
 
 #import <UIKit/UIKit.h>

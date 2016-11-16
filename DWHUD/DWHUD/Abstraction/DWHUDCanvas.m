@@ -10,6 +10,7 @@
 #import "UIColor+DWColorUtils.h"
 #import "DWHUDConstant.h"
 #import "DWAnimation.h"
+#import "DWHUDAnimationManager.h"
 @interface DWHUDCanvas ()
 
 @property (nonatomic ,strong) UIView * backView;
@@ -22,8 +23,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.layout = layout;
         self.hidden = YES;
+        self.layout = layout;
     }
     return self;
 }
@@ -245,6 +246,22 @@
         [weakSelf hideAction];
     };
     _hideAnimation = hideAnimation;
+}
+
+-(void)setShowAnimationType:(DWHUDAnimatoinType)showAnimationType
+{
+    if (showAnimationType & (DWHUDAnimatoinTypeFallIn | DWHUDAnimatoinTypeFlyIn | DWHUDAnimatoinTypeZoomIn | DWHUDAnimatoinTypeRotateIn | DWHUDAnimatoinTypeArcIn | DWHUDAnimatoinTypeLiftUp | DWHUDAnimatoinTypeNone)) {
+        _showAnimationType = showAnimationType;
+        self.showAnimation = [DWHUDAnimationManager createAnimationWithView:self type:showAnimationType];
+    }
+}
+
+-(void)setHideAnimationType:(DWHUDAnimatoinType)hideAnimationType
+{
+    if (hideAnimationType & (DWHUDAnimatoinTypeFallOut | DWHUDAnimatoinTypeFlyOut | DWHUDAnimatoinTypeZoomOut | DWHUDAnimatoinTypeRotateOut | DWHUDAnimatoinTypeArcOut | DWHUDAnimatoinTypePutDown | DWHUDAnimatoinTypeNone)) {
+        _hideAnimationType = hideAnimationType;
+        self.hideAnimation = [DWHUDAnimationManager createAnimationWithView:self type:hideAnimationType];
+    }
 }
 
 ///点击时隐藏的实现

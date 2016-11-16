@@ -7,8 +7,8 @@
 //
 
 #import "DWIndicatorHUD.h"
+#import "DWHUDConstant.h"
 #import "DWHUDComponentMaker.h"
-#import "DWHUDAnimationManager.h"
 #define MARGIN 5
 
 @interface DWHUDIndicatorLayout : DWHUDLayout
@@ -24,14 +24,12 @@
     DWIndicatorHUD * hud = self.canvas;
     CGFloat width = hud.bounds.size.width;
     hud.indicator.position = CGPointMake(width / 2.0, 20 + MARGIN);
-    [hud.layer addSublayer:hud.indicator];
     if (hud.textLabel) {
         hud.frame = CGRectMake(0, 0, hud.bounds.size.width, hud.textLabel.bounds.size.height + 50 + (hud.textLabelOffset?hud.textLabelOffset:MARGIN));
         hud.center = CGPointMake(hud.superview.bounds.size.width / 2.0, hud.superview.bounds.size.height/ 2.0);
         CGRect frame = hud.textLabel.frame;
         frame.origin = CGPointMake(hud.bounds.size.width / 2.0 - hud.textLabel.bounds.size.width / 2.0, 45 + (hud.textLabelOffset?hud.textLabelOffset:MARGIN));
         hud.textLabel.frame = frame;
-        [hud addSubview:hud.textLabel];
     }
 }
 
@@ -42,10 +40,13 @@
 ///HUD组件动画
 @property (nonatomic ,strong) DWAnimation * compAnimation;
 
+///仅加载HUD使用
+@property (nonatomic ,strong) UIActivityIndicatorView * loadingIndicator;
+
 @end
 
 @implementation DWIndicatorHUD
-
+@dynamic showAnimationType;
 -(instancetype)initCompleteWithMessage:(NSString *)msg toView:(UIView *)view hideOnTouchInside:(BOOL)hideOnTouchInside
 {
     DWHUDComponentMaker * maker = [DWHUDComponentMaker createTickComponentWithFrame:CGRectMake(0, 0, 40, 40)];
@@ -107,6 +108,47 @@
     return hud;
 }
 
+-(instancetype)initLoadingWithMessage:(NSString *)msg toView:(UIView *)view hideOnTouchInside:(BOOL)hideOnTouchInside
+{
+    DWHUDComponentMaker * comp = [DWIndicatorHUD createMsgCompWithMessage:msg];
+    
+    CGRect frame = [DWIndicatorHUD calculateFrameWithComp:comp];
+    
+    DWHUDIndicatorLayout * layout = [[DWHUDIndicatorLayout alloc] init];
+    self = [super initBasicHUDWithFrame:frame layout:layout view:view];
+    if (self) {
+        self.showAnimationType = DWHUDAnimatoinTypeZoomIn;
+        self.hideAnimationType = DWHUDAnimatoinTypeZoomOut;
+        self.showIndicatorAnimation = YES;
+        UIActivityIndicatorView * indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyleWhite)];
+        self.indicator = indicator.layer;
+        [self.layer addSublayer:self.indicator];
+        if (comp) {
+            self.textLabel = comp.component;
+            self.textLabel.textColor = [UIColor whiteColor];
+            self.textLabel.backgroundColor = [UIColor clearColor];
+            [self addSubview:self.textLabel];
+        }
+        self.loadingIndicator = indicator;
+        self.hideOnTouchInside = hideOnTouchInside;
+        self.hideOnTouchOutside = NO;
+    }
+    return self;
+}
+
++(instancetype)showLoadingWithMessage:(NSString *)msg toView:(UIView *)view hideOnTouchInside:(BOOL)hideOnTouchInside
+{
+    DWIndicatorHUD * hud = [[DWIndicatorHUD alloc] initLoadingWithMessage:msg toView:view hideOnTouchInside:hideOnTouchInside];
+    [hud.loadingIndicator startAnimating];
+    [hud show];
+    return hud;
+}
+
++(instancetype)showLoadingWithMessage:(NSString *)msg
+{
+    return [DWIndicatorHUD showLoadingWithMessage:msg toView:APPRootView hideOnTouchInside:NO];
+}
+
 -(instancetype)initIndicator:(CALayer *)indicator withAnimation:(DWAnimation *)animaiton msg:(NSString *)msg needRing:(BOOL)needRing toView:(UIView *)view hideOnTouchInside:(BOOL)hideOnTouchInside
 {
     CALayer * layer = needRing?[DWIndicatorHUD createRingForLayer:indicator]:indicator;
@@ -152,18 +194,9 @@
 #pragma mark ---工具方法---
 -(instancetype)initIndicatorHUDWithIndicator:(CALayer *)indicator indicatorAnimation:(DWAnimation *)animation message:(NSString *)msg view:(UIView *)view
 {
-    DWHUDComponentMaker * comp = nil;
-    if (msg.length) {
-        CGFloat limitLength = [UIScreen mainScreen].bounds.size.width * 0.5;
-        comp = [DWHUDComponentMaker createLabelComponentWithString:msg font:[UIFont systemFontOfSize:13] numberOfLines:0 autoresize:YES limitSize:CGSizeMake(limitLength, limitLength)];
-    }
-    CGRect indicatorFrm = CGRectMake(0, 0, 50, 50);
-    if (comp) {
-        UILabel * label = comp.component;
-        CGSize lbSz = label.bounds.size;
-        CGFloat tempWidth = lbSz.width + MARGIN * 2;
-        indicatorFrm = CGRectMake(0, 0, tempWidth > 50 ? tempWidth : 50, lbSz.height + 50 + MARGIN);
-    }
+    DWHUDComponentMaker * comp = [DWIndicatorHUD createMsgCompWithMessage:msg];
+    
+    CGRect indicatorFrm = [DWIndicatorHUD calculateFrameWithComp:comp];
     
     DWHUDIndicatorLayout * layout = [[DWHUDIndicatorLayout alloc] init];
     
@@ -174,13 +207,37 @@
         self.hideAnimationType = DWHUDAnimatoinTypeZoomOut;
         self.showIndicatorAnimation = YES;
         self.indicator = indicator;
+        [self.layer addSublayer:self.indicator];
         if (comp) {
             self.textLabel = comp.component;
             self.textLabel.textColor = [UIColor whiteColor];
             self.textLabel.backgroundColor = [UIColor clearColor];
+            [self addSubview:self.textLabel];
         }
     }
     return self;
+}
+
++(CGRect)calculateFrameWithComp:(DWHUDComponentMaker *)comp
+{
+    CGRect indicatorFrm = CGRectMake(0, 0, 50, 50);
+    if (comp) {
+        UILabel * label = comp.component;
+        CGSize lbSz = label.bounds.size;
+        CGFloat tempWidth = lbSz.width + MARGIN * 2;
+        indicatorFrm = CGRectMake(0, 0, tempWidth > 50 ? tempWidth : 50, lbSz.height + 50 + MARGIN);
+    }
+    return indicatorFrm;
+}
+
++(DWHUDComponentMaker *)createMsgCompWithMessage:(NSString *)msg
+{
+    DWHUDComponentMaker * comp = nil;
+    if (msg.length) {
+        CGFloat limitLength = [UIScreen mainScreen].bounds.size.width * 0.5;
+        comp = [DWHUDComponentMaker createLabelComponentWithString:msg font:[UIFont systemFontOfSize:13] numberOfLines:0 autoresize:YES limitSize:CGSizeMake(limitLength, limitLength)];
+    }
+    return comp;
 }
 
 ///为一个layer创建一个圆环
@@ -200,22 +257,6 @@
     if (self.textLabel) {
         _textLabelOffset = textLabelOffset;
         [self layoutIfNeeded];
-    }
-}
-
--(void)setShowAnimationType:(DWHUDAnimatoinType)showAnimationType
-{
-    if (showAnimationType & (DWHUDAnimatoinTypeFallIn | DWHUDAnimatoinTypeFlyIn | DWHUDAnimatoinTypeZoomIn | DWHUDAnimatoinTypeNone)) {
-        _showAnimationType = showAnimationType;
-        self.showAnimation = [DWHUDAnimationManager createAnimationWithView:self type:showAnimationType];
-    }
-}
-
--(void)setHideAnimationType:(DWHUDAnimatoinType)hideAnimationType
-{
-    if (hideAnimationType & (DWHUDAnimatoinTypeFallOut | DWHUDAnimatoinTypeFlyOut | DWHUDAnimatoinTypeZoomOut | DWHUDAnimatoinTypeNone)) {
-        _hideAnimationType = hideAnimationType;
-        self.hideAnimation = [DWHUDAnimationManager createAnimationWithView:self type:hideAnimationType];
     }
 }
 @end

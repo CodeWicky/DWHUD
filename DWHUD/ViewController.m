@@ -22,6 +22,7 @@
 #import "UIImageView+DWGifTool.h"
 #import "DWBaseAlert.h"
 #import "DWDefaultAlert.h"
+#import "UIColor+DWColorUtils.h"
 @interface ViewController ()
 
 @property (nonatomic ,strong) DWHUDTickIndicator * hud;
@@ -122,10 +123,15 @@
 //    
 //    CAShapeLayer * layer = [CAShapeLayer layer];
 //    layer.backgroundColor = [UIColor yellowColor].CGColor;
-//    layer.fillColor = [UIColor redColor].CGColor;
-//    layer.bounds = CGRectMake(0, 0, width, width);
+//    layer.strokeColor = [UIColor redColor].CGColor;
+//    layer.lineWidth = 3;
+//    layer.bounds = self.view.bounds;
 //    [self.view.layer addSublayer:layer];
 //    layer.position = self.view.center;
+//    UIBezierPath * path = [UIBezierPath bezierPath];
+//    [path moveToPoint:CGPointMake(0, 100)];
+//    [path addSinWithA:100 Omega:0.01 Phi:0 K:0 deltaX:414];
+//    
 //    layer.path = path.CGPath;
 //    DWHUDComponentMaker * maker = [DWHUDComponentMaker createExclamationComponentWithFrame:CGRectMake(0, 0, 200, 200)];
 //    CALayer * layer = maker.component;
@@ -159,32 +165,55 @@
     
 //    hud.verticalOffset = 100;
     
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 ////        DWMessageHUD * hud = [DWMessageHUD showMessage:@"我是一个好宝宝" hideDelay:5];
-//        DWIndicatorHUD * hud = [DWIndicatorHUD showExclamationWithMessage:@"我是一个好宝宝"];
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            [hud hide];
-//        });
+        DWIndicatorHUD * hud = [DWIndicatorHUD showExclamationWithMessage:@"我是一个好宝宝"];
+////        DWPictureHUD * hud = [DWPictureHUD showPicture:[[NSBundle mainBundle] pathForResource:@"aaa" ofType:@"jpg"]  picSize:CGSizeMake(200, 200)];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [hud hide];
+        });
 ////        hud.textLabelOffset = 100;
-//    });
-//    DWPictureHUD * hud = [DWPictureHUD showPicture:@"http://img1.gtimg.com/news/pics/18462/18462117.jpg"  picSize:CGSizeMake(200, 200)];
+    });
+
 //    hud.layer.cornerRadius = 100;
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(a:) name:DWAnimationPlayStartNotification object:nil];
     
-    DWDefaultAlert * alert = [[DWDefaultAlert alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
-    [self.view addSubview:alert];
-    alert.backgroundColor = [UIColor whiteColor];
-    UIButton * btn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    [btn setTitle:@"确定" forState:(UIControlStateNormal)];
-    [btn setTitleColor:[UIColor yellowColor] forState:(UIControlStateNormal)];
-//    [btn setBackgroundColor:[UIColor redColor]];
-    [alert addButton:btn withKey:@"确定"];
-    UIButton * btn2 = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    [btn2 setTitle:@"取消" forState:(UIControlStateNormal)];
-    [btn2 setTitleColor:[UIColor yellowColor] forState:(UIControlStateNormal)];
-//    [btn2 setBackgroundColor:[UIColor redColor]];
-    [alert addButton:btn2 withKey:@"取消"];
-    [alert show];
+//    DWDefaultAlert * alert = [[DWDefaultAlert alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+//    [self.view addSubview:alert];
+//    alert.backgroundColor = [UIColor whiteColor];
+//    UIButton * btn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+//    [btn setTitle:@"确定" forState:(UIControlStateNormal)];
+//    [btn setTitleColor:[UIColor yellowColor] forState:(UIControlStateNormal)];
+////    [btn setBackgroundColor:[UIColor redColor]];
+//    [alert addButton:btn withKey:@"确定"];
+//    UIButton * btn2 = [UIButton buttonWithType:(UIButtonTypeCustom)];
+//    [btn2 setTitle:@"取消" forState:(UIControlStateNormal)];
+//    [btn2 setTitleColor:[UIColor yellowColor] forState:(UIControlStateNormal)];
+////    [btn2 setBackgroundColor:[UIColor redColor]];
+//    [alert addButton:btn2 withKey:@"取消"];
+//    [alert show];
+    
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [DWDefaultAlert showAlertWithIconImagePath:[[NSBundle mainBundle] pathForResource:@"aaa" ofType:@"jpg"] iconSize:CGSizeMake(100, 100) subTitle:@"这是一张图片哦" leftBtnTitle:@"确定" leftBtnBlock:^(DWDefaultAlert *alert) {
+//            NSLog(@"111");
+//        } rightBtnTitle:@"取消" rigthBtnBlock:^(DWDefaultAlert *alert) {
+//            [alert hide];
+//        }];
+//    });
+//    [DWIndicatorHUD showLoadingWithMessage:@"请稍候。。。"];
+    
+//    UIView * red = [UIView new];
+//    red.bounds = CGRectMake(0, 0, 100, 100);
+//    red.center = self.view.center;
+//    red.backgroundColor = [UIColor redColor];
+//    [self.view addSubview:red];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [[red dw_CreateAnimationWithKey:@"1" animationCreater:^(DWAnimationMaker *maker) {
+//            maker.rotateTo(90).axis(X).duration(2).install();
+//        }] start];
+//    });
+    
+    
 }
 
 -(void)a:(NSNotification *)notice
