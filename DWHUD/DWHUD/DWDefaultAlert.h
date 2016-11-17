@@ -50,10 +50,10 @@ typedef void(^BtnBlock)(DWDefaultAlert * alert);
  subTitleFont       副标题字体
  view               父视图
  btnHeight          按钮高度
- seperatorColor     按钮分割线颜色
+ separatorColor     按钮分割线颜色
  margin             组件间距
  */
--(instancetype)initWithFrame:(CGRect)frame iconImagePath:(NSString *)imagePath iconSize:(CGSize)size defaultBtnTitle:(NSString *)defaultBtnTitle title:(NSString *)title titleFont:(UIFont *)titleFont subTitle:(NSString *)subTitle subTitleFont:(UIFont *)subTitle toView:(UIView *)view btnHeight:(CGFloat)btnHeight seperatorColor:(UIColor *)seperatorColor margin:(CGFloat)margin;
+-(instancetype)initWithFrame:(CGRect)frame iconImagePath:(NSString *)imagePath iconSize:(CGSize)size defaultBtnTitle:(NSString *)defaultBtnTitle title:(NSString *)title titleFont:(UIFont *)titleFont subTitle:(NSString *)subTitle subTitleFont:(UIFont *)subTitle toView:(UIView *)view btnHeight:(CGFloat)btnHeight separatorColor:(UIColor *)separatorColor margin:(CGFloat)margin;
 
 ///初始化一般标题类型alert
 -(instancetype)initNormalAlertWithTitle:(NSString *)title subTitle:(NSString *)subTitle defaultBtnTitle:(NSString *)defaultBtnTitle toView:(UIView *)view;
@@ -68,13 +68,13 @@ typedef void(^BtnBlock)(DWDefaultAlert * alert);
 -(instancetype)initWithIconImagePath:(NSString *)imagePath iconSize:(CGSize)size subTitle:(NSString *)subTitle leftBtnTitle:(NSString *)leftBtnTitle leftBtnBlock:(BtnBlock)leftBtnBlock rightBtnTitle:(NSString *)rightBtnTitle rightBtnBlock:(BtnBlock)rightBtnBlock;
 
 ///基本展示方法
-+(instancetype)showAlertWithTitle:(NSString *)title titleFont:(UIFont *)titleFont subTitle:(NSString *)subTitle subTitleFont:(UIFont *)subTitleFont toView:(UIView *)view seperatorColor:(UIColor *)seperatorColor defaultBtnTitle:(NSString *)defaultBtnTitle defaultBtnAction:(void(^)(DWDefaultAlert *))defaultBtnAction;
++(instancetype)showAlertWithTitle:(NSString *)title titleFont:(UIFont *)titleFont subTitle:(NSString *)subTitle subTitleFont:(UIFont *)subTitleFont toView:(UIView *)view separatorColor:(UIColor *)separatorColor defaultBtnTitle:(NSString *)defaultBtnTitle defaultBtnAction:(void(^)(DWDefaultAlert *))defaultBtnAction;
 
 ///展示一般标题类型的alert
-+(instancetype)showAlertWithTitle:(NSString *)title subTitle:(NSString *)subTitle defaultBtnTitle:(NSString *)defaultBtnTitle seperatorColor:(UIColor *)seperatorColor;
++(instancetype)showAlertWithTitle:(NSString *)title subTitle:(NSString *)subTitle defaultBtnTitle:(NSString *)defaultBtnTitle separatorColor:(UIColor *)separatorColor;
 
 ///展示一般图标类型的alert
-+(instancetype)showAlertWithIconImagePath:(NSString *)imagePath iconSize:(CGSize)size subTitle:(NSString *)subTitle defaultBtnTitle:(NSString *)defaultBtnTitle seperatorColor:(UIColor *)seperatorColor;
++(instancetype)showAlertWithIconImagePath:(NSString *)imagePath iconSize:(CGSize)size subTitle:(NSString *)subTitle defaultBtnTitle:(NSString *)defaultBtnTitle separatorColor:(UIColor *)separatorColor;
 
 ///展示描述型alert
 +(instancetype)showAlertWithDescription:(NSString *)description;

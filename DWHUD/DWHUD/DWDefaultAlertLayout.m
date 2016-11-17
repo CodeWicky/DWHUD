@@ -19,7 +19,7 @@
     if (self) {
         self.isHorizontal = YES;
         self.btnHeight = 30;
-        self.seperatorColor = [UIColor colorWithRGBString:@"b2b2b2"];
+        self.separatorColor = [UIColor colorWithRGBString:@"b2b2b2"];
     }
     return self;
 }
@@ -58,13 +58,13 @@
 {
     if (isHorizontal) {
         CALayer * HLine = [CALayer layer];
-        HLine.backgroundColor = self.seperatorColor.CGColor;
+        HLine.backgroundColor = self.separatorColor.CGColor;
         HLine.bounds = CGRectMake(0, 0, btn.frame.size.width, 0.5);
         HLine.position = CGPointMake(btn.frame.size.width / 2.0, 0.25);
         [btn.layer addSublayer:HLine];
         if (!isLast) {
             CALayer * VLine = [CALayer layer];
-            VLine.backgroundColor = self.seperatorColor.CGColor;
+            VLine.backgroundColor = self.separatorColor.CGColor;
             VLine.bounds = CGRectMake(0, 0, 0.5, btn.frame.size.height);
             VLine.position = CGPointMake(btn.frame.size.width - 0.25, btn.frame.size.height / 2.0);
             [btn.layer addSublayer:VLine];
@@ -73,7 +73,7 @@
     else
     {
         CALayer * HLine = [CALayer layer];
-        HLine.backgroundColor = self.seperatorColor.CGColor;
+        HLine.backgroundColor = self.separatorColor.CGColor;
         HLine.bounds = CGRectMake(0, 0, btn.frame.size.width, 0.5);
         HLine.position = CGPointMake(btn.frame.size.width / 2.0, 0.25);
         [btn.layer addSublayer:HLine];

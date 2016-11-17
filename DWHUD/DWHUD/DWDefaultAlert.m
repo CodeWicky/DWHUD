@@ -78,12 +78,12 @@
     return _btnKeysArray;
 }
 
--(instancetype)initWithFrame:(CGRect)frame iconImagePath:(NSString *)imagePath iconSize:(CGSize)size defaultBtnTitle:(NSString *)defaultBtnTitle title:(NSString *)title titleFont:(UIFont *)titleFont subTitle:(NSString *)subTitle subTitleFont:(UIFont *)subTitleFont toView:(UIView *)view btnHeight:(CGFloat)btnHeight seperatorColor:(UIColor *)seperatorColor margin:(CGFloat)margin
+-(instancetype)initWithFrame:(CGRect)frame iconImagePath:(NSString *)imagePath iconSize:(CGSize)size defaultBtnTitle:(NSString *)defaultBtnTitle title:(NSString *)title titleFont:(UIFont *)titleFont subTitle:(NSString *)subTitle subTitleFont:(UIFont *)subTitleFont toView:(UIView *)view btnHeight:(CGFloat)btnHeight separatorColor:(UIColor *)separatorColor margin:(CGFloat)margin
 {
     DWDefaultForAlertLayout * layout = [[DWDefaultForAlertLayout alloc] init];
     layout.isHorizontal = YES;
     layout.btnHeight = btnHeight;
-    layout.seperatorColor = seperatorColor;
+    layout.separatorColor = separatorColor;
     layout.margin = margin;
     self = [super initWithFrame:frame layout:layout];
     if (self) {
@@ -163,7 +163,7 @@
         view = APPRootView;
     }
     CGRect frame = [DWDefaultAlert calculateFrameWithTitle:title titleFont:titleFont subTitle:subTitle subTitleFont:subTitleFont margin:margin btnHeight:btnHeight];
-    return [self initWithFrame:frame iconImagePath:nil iconSize:CGSizeZero defaultBtnTitle:defaultBtnTitle title:title titleFont:titleFont subTitle:subTitle subTitleFont:subTitleFont toView:view btnHeight:btnHeight seperatorColor:[UIColor colorWithRGBString:@"bbcfd7"] margin:margin];
+    return [self initWithFrame:frame iconImagePath:nil iconSize:CGSizeZero defaultBtnTitle:defaultBtnTitle title:title titleFont:titleFont subTitle:subTitle subTitleFont:subTitleFont toView:view btnHeight:btnHeight separatorColor:[UIColor colorWithRGBString:@"bbcfd7"] margin:margin];
 }
 
 -(instancetype)initNormalAlertWithIconImagePath:(NSString *)imagePath iconSize:(CGSize)size subTitle:(NSString *)subTitle defaultBtnTitle:(NSString *)defaultBtnTitle toView:(UIView *)view
@@ -175,10 +175,10 @@
         view = APPRootView;
     }
     CGRect frame = [DWDefaultAlert calculateFrameWithIconSize:size subTitle:subTitle subTitleFont:subTitleFont margin:margin btnHeight:btnHeight];
-    return [self initWithFrame:frame iconImagePath:imagePath iconSize:size defaultBtnTitle:defaultBtnTitle title:nil titleFont:nil subTitle:subTitle subTitleFont:subTitleFont toView:view btnHeight:btnHeight seperatorColor:[UIColor colorWithRGBString:@"bbcfd7"] margin:margin];
+    return [self initWithFrame:frame iconImagePath:imagePath iconSize:size defaultBtnTitle:defaultBtnTitle title:nil titleFont:nil subTitle:subTitle subTitleFont:subTitleFont toView:view btnHeight:btnHeight separatorColor:[UIColor colorWithRGBString:@"bbcfd7"] margin:margin];
 }
 
-+(instancetype)showAlertWithTitle:(NSString *)title titleFont:(UIFont *)titleFont subTitle:(NSString *)subTitle subTitleFont:(UIFont *)subTitleFont toView:(UIView *)view seperatorColor:(UIColor *)seperatorColor defaultBtnTitle:(NSString *)defaultBtnTitle defaultBtnAction:(void(^)(DWDefaultAlert *))defaultBtnAction
++(instancetype)showAlertWithTitle:(NSString *)title titleFont:(UIFont *)titleFont subTitle:(NSString *)subTitle subTitleFont:(UIFont *)subTitleFont toView:(UIView *)view separatorColor:(UIColor *)separatorColor defaultBtnTitle:(NSString *)defaultBtnTitle defaultBtnAction:(void(^)(DWDefaultAlert *))defaultBtnAction
 {
     if (!view) {
         view = APPRootView;
@@ -186,7 +186,7 @@
     CGFloat margin = 15;
     CGFloat btnHeight = 30;
     CGRect frame = [DWDefaultAlert calculateFrameWithTitle:title titleFont:titleFont subTitle:subTitle subTitleFont:subTitleFont margin:margin btnHeight:btnHeight];
-    DWDefaultAlert * alert = [[DWDefaultAlert alloc] initWithFrame:frame iconImagePath:nil iconSize:CGSizeZero defaultBtnTitle:defaultBtnTitle title:title titleFont:titleFont subTitle:subTitle subTitleFont:subTitleFont toView:view btnHeight:btnHeight seperatorColor:seperatorColor margin:margin];
+    DWDefaultAlert * alert = [[DWDefaultAlert alloc] initWithFrame:frame iconImagePath:nil iconSize:CGSizeZero defaultBtnTitle:defaultBtnTitle title:title titleFont:titleFont subTitle:subTitle subTitleFont:subTitleFont toView:view btnHeight:btnHeight separatorColor:separatorColor margin:margin];
     if (defaultBtnAction) {
         alert.defaultBtnBlock = defaultBtnAction;
     }
@@ -194,19 +194,19 @@
     return alert;
 }
 
-+(instancetype)showAlertWithTitle:(NSString *)title subTitle:(NSString *)subTitle defaultBtnTitle:(NSString *)defaultBtnTitle seperatorColor:(UIColor *)seperatorColor
++(instancetype)showAlertWithTitle:(NSString *)title subTitle:(NSString *)subTitle defaultBtnTitle:(NSString *)defaultBtnTitle separatorColor:(UIColor *)separatorColor
 {
-    return [DWDefaultAlert showAlertWithTitle:title titleFont:[UIFont systemFontOfSize:20] subTitle:subTitle subTitleFont:[UIFont systemFontOfSize:17] toView:nil seperatorColor:seperatorColor defaultBtnTitle:defaultBtnTitle defaultBtnAction:nil];
+    return [DWDefaultAlert showAlertWithTitle:title titleFont:[UIFont systemFontOfSize:20] subTitle:subTitle subTitleFont:[UIFont systemFontOfSize:17] toView:nil separatorColor:separatorColor defaultBtnTitle:defaultBtnTitle defaultBtnAction:nil];
 }
 
-+(instancetype)showAlertWithIconImagePath:(NSString *)imagePath iconSize:(CGSize)size subTitle:(NSString *)subTitle defaultBtnTitle:(NSString *)defaultBtnTitle seperatorColor:(UIColor *)seperatorColor
++(instancetype)showAlertWithIconImagePath:(NSString *)imagePath iconSize:(CGSize)size subTitle:(NSString *)subTitle defaultBtnTitle:(NSString *)defaultBtnTitle separatorColor:(UIColor *)separatorColor
 {
-    return [DWDefaultAlert showAlertWithTitle:nil titleFont:nil subTitle:subTitle subTitleFont:[UIFont systemFontOfSize:17] toView:nil seperatorColor:seperatorColor defaultBtnTitle:defaultBtnTitle defaultBtnAction:nil];
+    return [DWDefaultAlert showAlertWithTitle:nil titleFont:nil subTitle:subTitle subTitleFont:[UIFont systemFontOfSize:17] toView:nil separatorColor:separatorColor defaultBtnTitle:defaultBtnTitle defaultBtnAction:nil];
 }
 
 +(instancetype)showAlertWithDescription:(NSString *)description
 {
-    return [DWDefaultAlert showAlertWithTitle:nil subTitle:description defaultBtnTitle:@"我知道了" seperatorColor:[UIColor colorWithRGBString:@"bbcfd7"]];
+    return [DWDefaultAlert showAlertWithTitle:nil subTitle:description defaultBtnTitle:@"我知道了" separatorColor:[UIColor colorWithRGBString:@"bbcfd7"]];
 }
 
 +(instancetype)showAlertWithTitle:(NSString *)title subTilte:(NSString *)subTitle leftBtnTitle:(NSString *)leftBtnTitle leftBtnBlock:(BtnBlock)leftBtnBlock rightBtnTitle:(NSString *)rightBtnTitle rightBtnBlock:(BtnBlock)rightBtnBlock

@@ -27,6 +27,6 @@
 @property (nonatomic ,assign) CGFloat btnHeight;
 
 ///按钮分割线颜色
-@property (nonatomic ,strong) UIColor * seperatorColor;
+@property (nonatomic ,strong) UIColor * separatorColor;
 
 @end
